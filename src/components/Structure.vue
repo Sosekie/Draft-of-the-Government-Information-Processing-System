@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <div class="innerContainer">
+      <Background></Background>
       <div class="headBar">
         <div class="search">
           <img src="../assets/search.png" alt="" />
@@ -12,37 +13,60 @@
           <div class="logo">
             <img src="../assets/admin.png" alt="" />
           </div>
-          <div class="dig">
-            <img src="../assets/dig.png" alt="" />
-            <span class="words">隐诉挖掘</span>
-          </div>
-          <div class="hot">
-            <img src="../assets/hot.png" alt="" />
-            <span class="words">热点发现</span>
-          </div>
-          <div class="deal">
-            <img src="../assets/deal.png" alt="" />
-            <span class="words">处理页面</span>
-          </div>
+          <router-link to="/">
+            <div class="dig">
+              <img src="../assets/dig.png" alt="" />
+              <span class="words">隐诉挖掘</span>
+            </div>
+          </router-link>
+          <router-link to="/Hot">
+            <div class="hot">
+              <img src="../assets/hot.png" alt="" />
+              <span class="words">热点发现</span>
+            </div>
+          </router-link>
+          <router-link to="/Deal">
+            <div class="deal">
+              <img src="../assets/deal.png" alt="" />
+              <span class="words">处理页面</span>
+            </div>
+          </router-link>
         </div>
         <div class="middle"></div>
         <div class="down">
-          <div class="home">
-            <img src="../assets/home.png" alt="" />
-            <span class="words">主页</span>
-          </div>
+          <router-link to="/Home"
+            ><div class="home">
+              <img src="../assets/home.png" alt="" />
+              <span class="words">主页</span>
+            </div>
+          </router-link>
         </div>
       </div>
-      <div class="content">nihao</div>
+      <div class="content">
+        <router-view></router-view>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+import Background from "./Background";
+export default {
+  components: {
+    Background,
+  },
+};
 </script>
 
 <style>
+.router-link-active {
+  text-decoration: none;
+  color: #0bedae;
+}
+a {
+  text-decoration: none;
+  color: #0bedae;
+}
 .innerContainer {
   width: 72rem;
   height: 40.5rem;
@@ -52,12 +76,17 @@ export default {};
     rgba(18, 115, 104, 1)
   );
   display: flex;
+  font-family: YouYuan;
+}
+Background {
+  z-index: 1;
 }
 .content {
   margin: 3.5rem 1rem 1rem 4.5rem;
   /* background-color: #0bedae; */
   width: 66.5rem;
   height: 36rem;
+  z-index: 2;
 }
 
 .leftBar {
@@ -75,7 +104,7 @@ export default {};
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  -webkit-user-select: none;
+  /* -webkit-user-select: none; */
   transition: all 200ms ease-in-out;
   font-size: 0.8rem;
   color: #0bedae;
@@ -237,6 +266,7 @@ export default {};
   filter: drop-shadow(0 0 0.3rem #0bedae);
 }
 .headBar .search input {
+  width: 9.5rem;
   background-color: #0000;
   border: 0;
   outline: medium;
@@ -245,6 +275,7 @@ export default {};
   filter: drop-shadow(0 0 0.03rem #0bedae);
   font-weight: 100;
   text-align: center;
+  font-family: YouYuan;
   -webkit-app-region: no-drag;
 }
 .headBar .search input::-webkit-input-placeholder {
