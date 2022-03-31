@@ -4,26 +4,20 @@
       <div class="up">
         <div class="chart1">
           <iframe
-            name="iframeMap"
-            class="iframeMapViewComponent"
-            width="100%"
-            height="100%"
-            frameborder="0"
-            scrolling="no"
-            ref="iframeDom"
             src="chart.html"
+            name="topFrame"
+            scrolling="No"
+            frameborder="0"
+            class="topFrame"
           ></iframe>
         </div>
         <div class="chart2">
           <iframe
-            name="iframeMap"
-            class="iframeMapViewComponent"
-            width="100%"
-            height="100%"
-            frameborder="0"
-            scrolling="no"
-            ref="iframeDom"
             src="chart.html"
+            name="topFrame"
+            scrolling="No"
+            frameborder="0"
+            class="topFrame"
           ></iframe>
         </div>
       </div>
@@ -164,7 +158,7 @@
   </div>
 </template>
 
-<script>
+<script scoped>
 export default {
   name: "Dig",
 };
@@ -196,12 +190,27 @@ export default {
   margin-right: 1rem;
   border: 0.1rem solid #778e9577;
   background-color: #778e9522;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .left .up .chart2 {
   flex: 25rem;
   border: 1px solid;
   border: 0.1rem solid #778e9577;
   background-color: #778e9522;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.left .up iframe {
+  width: 23.5rem;
+  height: 17rem;
+  padding: 0rem;
+  margin: 0rem;
+  /* border: 1px solid #000; */
 }
 .left .down {
   flex: 18rem;
