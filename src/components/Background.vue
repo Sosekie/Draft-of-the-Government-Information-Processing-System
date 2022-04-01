@@ -50,12 +50,13 @@ section {
   position: absolute;
   width: 4rem;
   height: 4rem;
-  background-color: #0bedae;
+  background-color: #0bedae22;
+  filter: drop-shadow(0 0 0.5rem #0bedae22);
   /* border-radius: 1rem; */
 }
 .Back span:nth-child(3n + 1) {
   background: transparent;
-  border: 0.2rem solid #0bedae;
+  border: 0.2rem solid #0bedae22;
 }
 .Back span:nth-child(1) {
   top: 50%;

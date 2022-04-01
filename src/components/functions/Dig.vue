@@ -44,7 +44,7 @@
             <div class="word">草</div>
           </div>
         </div>
-        <marquee
+        <div
           class="sentence"
           onmouseout="this.start();"
           onmouseover="this.stop();"
@@ -94,7 +94,7 @@
             <img src="../../assets/point.png" alt="" />
             <div class="tent">请你吃粑粑</div>
           </div>
-        </marquee>
+        </div>
       </div>
     </div>
     <div class="right">
@@ -332,10 +332,10 @@ export default {
   margin-bottom: 1rem;
 }
 .right .up .block .things .time {
-  padding: 0.1rem 0.4rem;
-  background-color: #0bedae;
+  padding: 0.1rem 0.4rem 0.2rem 0.4rem;
+  background-color: #127368;
   height: 0.8rem;
-  color: #fff;
+  color: #0bedae;
   font-size: 0.8rem;
   font-family: YouYuan;
   z-index: 1;
