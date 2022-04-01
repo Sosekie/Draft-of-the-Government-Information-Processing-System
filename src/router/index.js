@@ -7,6 +7,8 @@ import Dig from '../components/functions/Dig.vue';
 import Hot from '../components/functions/Hot.vue';
 import Deal from '../components/functions/Deal.vue';
 import Home from '../components/functions/Home.vue';
+import Deal1 from '../components/functions/dealpage/Deal1.vue';
+import Deal2 from '../components/functions/dealpage/Deal2.vue';
 
 Vue.config.productionTip = false
 
@@ -15,7 +17,17 @@ const router = new VueRouter({
         // { path: '/', component: Structure },
         { path: '/', component: Dig },
         { path: '/Hot', component: Hot },
-        { path: '/Deal', component: Deal },
+        {
+            path: '/Deal',
+            component: Deal,
+            children: [
+                { path: '', component: Deal1 },
+                {
+                    path: ':deal2',
+                    component: Deal2,
+                }
+            ]
+        },
         { path: '/Home', component: Home },
     ]
 })

@@ -1,20 +1,16 @@
 <template>
   <div class="dig">
     <div class="mod">
-      <button class="mod1">诉求处理详情</button>
+      <router-link to="/Deal/">
+        <button class="mod1">诉求处理详情</button>
+      </router-link>
       <img src="../../assets/line.png" alt="" />
-      <button class="mod2">自定义上传查询</button>
+      <router-link to="/Deal/deal2">
+        <button class="mod2">自定义上传查询</button>
+      </router-link>
     </div>
-    <div class="content">
-      <div class="left"></div>
-      <div class="middle">
-        <div class="up"></div>
-        <div class="down">
-          <div class="left"></div>
-          <div class="right"></div>
-        </div>
-      </div>
-      <div class="right"></div>
+    <div class="contentDeal">
+      <router-view></router-view>
     </div>
   </div>
 </template>
@@ -35,7 +31,7 @@ export default {
 }
 .mod {
   flex: 1.5rem;
-  border: 1px solid;
+  /* border: 1px solid; */
   height: 1.5rem;
   width: 66.5rem;
   display: flex;
@@ -64,8 +60,12 @@ export default {
   font-weight: 500;
 }
 
-.deal .content {
+.contentDeal {
   flex: 34.5rem;
-  border: 1px solid #000;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 </style>
