@@ -92,14 +92,14 @@ Background {
 .leftBar {
   background: linear-gradient(
     to right bottom,
-    rgba(127, 149, 155, 1),
-    rgba(127, 149, 155, 0.8)
+    rgba(250, 251, 252, 1),
+    rgba(250, 251, 252, 0.8)
   );
   position: absolute;
   width: 3.5rem;
   height: 40.5rem;
   overflow: hidden;
-  box-shadow: 0.2rem 0.2rem 2rem 0.1rem #04202c;
+  box-shadow: 0.1rem 0.1rem 2rem 1 #dce0e1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -127,7 +127,7 @@ Background {
 .leftBar img {
   width: 1.5rem;
   height: 1.5rem;
-  filter: drop-shadow(0 0 0.3rem #0bedae);
+  filter: drop-shadow(0 0 0.01rem #0bedae);
 }
 .leftBar .dig,
 .hot,
@@ -155,25 +155,25 @@ Background {
   width: 1.5rem;
   height: 1.5rem;
   margin-left: 0.2rem;
-  filter: drop-shadow(0 0 0.3rem #0bedae);
+  filter: drop-shadow(0 0 0.01rem #0bedae);
 }
 .leftBar .hot img {
   display: inline-block;
   width: 1.3rem;
   height: 1.5rem;
-  filter: drop-shadow(0 0 0.3rem #0bedae);
+  filter: drop-shadow(0 0 0.01rem #0bedae);
 }
 .leftBar .deal img {
   display: inline-block;
   width: 1.5rem;
   height: 1.5rem;
-  filter: drop-shadow(0 0 0.3rem #0bedae);
+  filter: drop-shadow(0 0 0.01rem #0bedae);
 }
 .leftBar .home img {
   display: inline-block;
   width: 1.5rem;
   height: 1.5rem;
-  filter: drop-shadow(0 0 0.3rem #0bedae);
+  filter: drop-shadow(0 0 0.01rem #0bedae);
 }
 .leftBar .dig .words {
   display: none;
@@ -231,8 +231,8 @@ Background {
 .headBar {
   background: linear-gradient(
     to right bottom,
-    rgba(127, 149, 155, 1),
-    rgba(127, 149, 155, 0.8)
+    rgba(250, 251, 252, 1),
+    rgba(250, 251, 252, 0.8)
   );
   position: absolute;
   width: 72rem;
