@@ -1,5 +1,17 @@
 <template>
   <div class="dig">
+    <div class="messageBox" v-if="bol" @click="close">
+      <div class="boardout" @click.stop="">
+        <div class="board">
+          <div class="word">导入您关注的文本素材</div>
+          <img src="../../assets/linehori.png" alt="" />
+          <div class="func">
+            <button>文件导入</button>
+          </div>
+        </div>
+        <div class="chaxun">确定</div>
+      </div>
+    </div>
     <div class="left">
       <div class="up">
         <div class="chart1">
@@ -97,10 +109,10 @@
         </div>
       </div>
     </div>
-    <div class="right">
+    <div class="righthot">
       <div class="up">
         <marquee
-          class="block"
+          class="blockhot"
           onmouseout="this.start();"
           onmouseover="this.stop();"
           scrolldelay="400"
@@ -152,7 +164,7 @@
         </marquee>
       </div>
       <div class="down">
-        <button type="submit">数据上传</button>
+        <button type="submit" @click="toggle">数据上传</button>
       </div>
     </div>
   </div>
@@ -161,6 +173,19 @@
 <script scoped>
 export default {
   name: "Hot",
+  data() {
+    return {
+      bol: false,
+    };
+  },
+  methods: {
+    toggle() {
+      this.bol = !this.bol;
+    },
+    close() {
+      this.bol = !this.bol;
+    },
+  },
 };
 </script>
 
@@ -296,12 +321,12 @@ export default {
   border-bottom: solid 0.01rem #0bedae77;
   line-height: 1.3rem;
 }
-.right {
+.righthot {
   flex: 16.5rem;
   display: flex;
   flex-direction: column;
 }
-.right .up {
+.righthot .up {
   flex: 30rem;
   border: 0.1rem solid #778e9577;
   background-color: #778e9522;
@@ -314,11 +339,11 @@ export default {
   white-space: nowrap;
   height: 29rem;
 }
-.right .up .block {
+.righthot .up .blockhot {
   margin: 0.5rem;
   height: 28rem;
 }
-.right .up::after {
+.righthot .up::after {
   content: "";
   position: absolute;
   width: 0.1rem;
@@ -327,11 +352,11 @@ export default {
   background-color: #0bedae;
   z-index: -1;
 }
-.right .up .block .things {
+.righthot .up .blockhot .things {
   display: flex;
   margin-bottom: 1rem;
 }
-.right .up .block .things .time {
+.righthot .up .blockhot .things .time {
   padding: 0.1rem 0.4rem 0.2rem 0.4rem;
   background-color: #127368;
   height: 0.8rem;
@@ -342,14 +367,14 @@ export default {
   margin: 0 0.5rem 0 0;
   border-radius: 0.8rem;
 }
-.right .up .block .things .static {
+.righthot .up .blockhot .things .static {
   color: #fff;
   font-size: 0.8rem;
   font-family: YouYuan;
   opacity: 0.8;
   padding: 0.1rem 0rem;
 }
-.right .down {
+.righthot .down {
   flex: 6rem;
   /* border: 0.1rem solid #778e9577;
   background-color: #778e9522; */
@@ -358,7 +383,7 @@ export default {
   align-items: center;
   justify-content: center;
 }
-.right .down button {
+.righthot .down button {
   width: 16.3rem;
   height: 5.7rem;
   border: 0.1rem solid #778e9577;
@@ -369,9 +394,99 @@ export default {
   font-family: YouYuan;
   transition: all 200ms ease-in-out;
 }
-.right .down button:hover {
+.righthot .down button:hover {
   background-color: #0bedae;
   color: #fff;
   font-weight: 500;
+}
+
+.messageBox {
+  width: 100%;
+  height: 100%;
+  margin: 2.5rem 0rem 0rem 3.5rem;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: #0006;
+  z-index: 2;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  /* transition: all 200ms ease-in-out; */
+}
+.messageBox .boardout {
+  width: 20rem;
+  margin: 0rem 7rem 5rem 0rem;
+  border-radius: 0.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.messageBox .boardout .board {
+  padding: 1rem;
+  margin: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(250, 251, 252, 1),
+    rgba(250, 251, 252, 0.8)
+  );
+  border-radius: 0.2rem 0.2rem 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.messageBox .board .word {
+  width: 20rem;
+  font-weight: 900;
+  color: #687684;
+}
+.messageBox .board img {
+  width: 20rem;
+  height: 0.05rem;
+  margin-bottom: 0.5rem;
+}
+.messageBox .func {
+  width: 20rem;
+  margin: 0.5rem 0.5rem 0rem 0.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: center;
+}
+.messageBox .func button {
+  width: 5rem;
+  height: 2rem;
+  border: 0;
+  border-radius: 0.2rem;
+  background-color: #fff;
+  filter: drop-shadow(1 1 0.01rem #000);
+  font-weight: 900;
+  color: #687684;
+}
+.messageBox .func .discrip {
+  font-size: 0.6rem;
+  font-weight: 900;
+  color: #687684;
+  filter: drop-shadow(1 1 0.01rem #000);
+}
+.messageBox .chaxun {
+  padding: 0.5rem 1rem;
+  margin: 0;
+  width: 21rem;
+  background: linear-gradient(
+    to bottom,
+    rgba(250, 251, 252, 1),
+    rgba(250, 251, 252, 1)
+  );
+  border-radius: 0 0 0.2rem 0.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  color: #687684;
 }
 </style>

@@ -27,96 +27,24 @@
       </div>
       <div class="contentDeal1">
         <div class="dealleft">
-          <div>
-            <div class="questionleft">
-              <div class="title">民生问题</div>
+          <div class="questionleft" v-for="item in items">
+            <button onclick="clickTab(this)" @click="contentview">
+              <div class="title">{{ item.title }}</div>
               <div class="bar">|</div>
-              <div class="words">楼梯口垃圾堆积</div>
-            </div>
-            <div class="questionleft">
-              <div class="title">民生问题</div>
-              <div class="bar">|</div>
-              <div class="words">
-                楼梯口垃圾确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实堆积成山
-              </div>
-            </div>
-            <div class="questionleft">
-              <div class="title">民生问题</div>
-              <div class="bar">|</div>
-              <div class="words">楼梯口垃圾堆积</div>
-            </div>
-            <div class="questionleft">
-              <div class="title">民生问题</div>
-              <div class="bar">|</div>
-              <div class="words">楼梯口垃圾堆积</div>
-            </div>
-            <div class="questionleft">
-              <div class="title">民生问题</div>
-              <div class="bar">|</div>
-              <div class="words">楼梯口垃圾堆积</div>
-            </div>
-            <div class="questionleft">
-              <div class="title">民生问题</div>
-              <div class="bar">|</div>
-              <div class="words">楼梯口垃圾堆积</div>
-            </div>
-            <div class="questionleft">
-              <div class="title">民生问题</div>
-              <div class="bar">|</div>
-              <div class="words">楼梯口垃圾堆积</div>
-            </div>
-            <div class="questionleft">
-              <div class="title">民生问题</div>
-              <div class="bar">|</div>
-              <div class="words">楼梯口垃圾堆积</div>
-            </div>
-            <div class="questionleft">
-              <div class="title">民生问题</div>
-              <div class="bar">|</div>
-              <div class="words">楼梯口垃圾堆积</div>
-            </div>
-            <div class="questionleft">
-              <div class="title">民生问题</div>
-              <div class="bar">|</div>
-              <div class="words">楼梯口垃圾堆积</div>
-            </div>
-            <div class="questionleft">
-              <div class="title">民生问题</div>
-              <div class="bar">|</div>
-              <div class="words">楼梯口垃圾堆积</div>
-            </div>
-            <div class="questionleft">
-              <div class="title">民生问题</div>
-              <div class="bar">|</div>
-              <div class="words">楼梯口垃圾堆积</div>
-            </div>
-            <div class="questionleft">
-              <div class="title">民生问题</div>
-              <div class="bar">|</div>
-              <div class="words">楼梯口垃圾堆积</div>
-            </div>
+              <div class="words">{{ item.text }}</div>
+            </button>
           </div>
         </div>
         <div class="middle">
           <div class="up">
-            <p>
-              人走向成熟的第一步，就是要认识并接受自己的平庸与普通。
-              我们从小到大总能从各种渠道听说一些人才被埋没的故事并感到惋惜，但大家有没有发现，这些事情无论中外，基本都发生在古代？
-              准确地说，是工业革命之前。
-              这是因为在信息和交通并不发达的年代里，个人的任何闪光点都难以被知晓，再出名也就是在自己的村子或者…
-            </p>
-            <p>
-              人走向成熟的第一步，就是要认识并接受自己的平庸与普通。
-              我们从小到大总能从各种渠道听说一些人才被埋没的故事并感到惋惜，但大家有没有发现，这些事情无论中外，基本都发生在古代？
-              准确地说，是工业革命之前。
-              这是因为在信息和交通并不发达的年代里，个人的任何闪光点都难以被知晓，再出名也就是在自己的村子或者…
-            </p>
-            <p>
-              人走向成熟的第一步，就是要认识并接受自己的平庸与普通。
-              我们从小到大总能从各种渠道听说一些人才被埋没的故事并感到惋惜，但大家有没有发现，这些事情无论中外，基本都发生在古代？
-              准确地说，是工业革命之前。
-              这是因为在信息和交通并不发达的年代里，个人的任何闪光点都难以被知晓，再出名也就是在自己的村子或者…
-            </p>
+            <div v-if="content">
+              我们家隔壁好像有人在家暴 但今天是我第一天搬过来
+              不知道是隔壁还是楼下？
+              我能听到的东西撞墙的声音，能听到一个男人咬着牙说是不是没完了？不知道要不要报警？一方面不能确定是哪一家，另外一方面也没办法完全确定是存在暴力行为的@青岛公安
+              但是那个男人咬着牙恶狠狠说话的声音真的很可怕。这个声音大概十分钟就会出现一次，应该是从晚上11点左右就开始了，中间停了很长一段时间，现在又开始了。@青岛交通管理监督
+              @青岛交警 @青岛新闻网民生在线 @青岛政务 @青岛交通广播FM897
+              @城阳交警
+            </div>
           </div>
           <div class="down">
             <div class="left">
@@ -126,13 +54,19 @@
                 scrolling="No"
                 frameborder="0"
                 class="topFrame"
+                v-if="play"
               ></iframe>
             </div>
             <div class="right">
+              <button @click="displayon">
+                <img src="../../assets/point.png" alt="" />智能转办
+              </button>
               <div class="title">处理建议</div>
-              <div class="words">部门一</div>
-              <div class="words">部门二</div>
-              <div class="words">部门三</div>
+              <div v-if="play">
+                <div class="words">市文化和旅游局</div>
+                <div class="words">市社会保障局</div>
+                <div class="words">市人民政府办公厅</div>
+              </div>
             </div>
           </div>
         </div>
@@ -140,74 +74,81 @@
           <div class="titleright">相似工单</div>
           <div>
             <div class="questionright">
-              <div class="title">民生问题</div>
-              <div class="bar">|</div>
-              <div class="words">楼梯口垃圾堆积</div>
+              <button onclick="clickTab(this)">
+                <div class="title">民生问题</div>
+                <div class="bar">|</div>
+                <div class="words">楼梯口垃圾堆积</div>
+              </button>
             </div>
             <div class="questionright">
-              <div class="title">民生问题</div>
-              <div class="bar">|</div>
-              <div class="words">楼梯口垃圾堆积</div>
+              <button onclick="clickTab(this)">
+                <div class="title">民生问题</div>
+                <div class="bar">|</div>
+                <div class="words">楼梯口垃圾堆积</div>
+              </button>
             </div>
             <div class="questionright">
-              <div class="title">民生问题</div>
-              <div class="bar">|</div>
-              <div class="words">楼梯口垃圾堆积</div>
+              <button onclick="clickTab(this)">
+                <div class="title">民生问题</div>
+                <div class="bar">|</div>
+                <div class="words">楼梯口垃圾堆积</div>
+              </button>
             </div>
             <div class="questionright">
-              <div class="title">民生问题</div>
-              <div class="bar">|</div>
-              <div class="words">楼梯口垃圾堆积</div>
+              <button onclick="clickTab(this)">
+                <div class="title">民生问题</div>
+                <div class="bar">|</div>
+                <div class="words">楼梯口垃圾堆积</div>
+              </button>
             </div>
             <div class="questionright">
-              <div class="title">民生问题</div>
-              <div class="bar">|</div>
-              <div class="words">楼梯口垃圾堆积</div>
+              <button onclick="clickTab(this)">
+                <div class="title">民生问题</div>
+                <div class="bar">|</div>
+                <div class="words">楼梯口垃圾堆积</div>
+              </button>
             </div>
             <div class="questionright">
-              <div class="title">民生问题</div>
-              <div class="bar">|</div>
-              <div class="words">楼梯口垃圾堆积</div>
+              <button onclick="clickTab(this)">
+                <div class="title">民生问题</div>
+                <div class="bar">|</div>
+                <div class="words">楼梯口垃圾堆积</div>
+              </button>
             </div>
             <div class="questionright">
-              <div class="title">民生问题</div>
-              <div class="bar">|</div>
-              <div class="words">楼梯口垃圾堆积</div>
+              <button onclick="clickTab(this)">
+                <div class="title">民生问题</div>
+                <div class="bar">|</div>
+                <div class="words">楼梯口垃圾堆积</div>
+              </button>
             </div>
             <div class="questionright">
-              <div class="title">民生问题</div>
-              <div class="bar">|</div>
-              <div class="words">楼梯口垃圾堆积</div>
+              <button onclick="clickTab(this)">
+                <div class="title">民生问题</div>
+                <div class="bar">|</div>
+                <div class="words">楼梯口垃圾堆积</div>
+              </button>
             </div>
             <div class="questionright">
-              <div class="title">民生问题</div>
-              <div class="bar">|</div>
-              <div class="words">楼梯口垃圾堆积</div>
+              <button onclick="clickTab(this)">
+                <div class="title">民生问题</div>
+                <div class="bar">|</div>
+                <div class="words">楼梯口垃圾堆积</div>
+              </button>
             </div>
             <div class="questionright">
-              <div class="title">民生问题</div>
-              <div class="bar">|</div>
-              <div class="words">楼梯口垃圾堆积</div>
+              <button onclick="clickTab(this)">
+                <div class="title">民生问题</div>
+                <div class="bar">|</div>
+                <div class="words">楼梯口垃圾堆积</div>
+              </button>
             </div>
             <div class="questionright">
-              <div class="title">民生问题</div>
-              <div class="bar">|</div>
-              <div class="words">楼梯口垃圾堆积</div>
-            </div>
-            <div class="questionright">
-              <div class="title">民生问题</div>
-              <div class="bar">|</div>
-              <div class="words">楼梯口垃圾堆积</div>
-            </div>
-            <div class="questionright">
-              <div class="title">民生问题</div>
-              <div class="bar">|</div>
-              <div class="words">楼梯口垃圾堆积</div>
-            </div>
-            <div class="questionright">
-              <div class="title">民生问题</div>
-              <div class="bar">|</div>
-              <div class="words">楼梯口垃圾堆积</div>
+              <button onclick="clickTab(this)">
+                <div class="title">民生问题</div>
+                <div class="bar">|</div>
+                <div class="words">楼梯口垃圾堆积</div>
+              </button>
             </div>
           </div>
         </div>
@@ -224,6 +165,83 @@ export default {
   data() {
     return {
       bol: false,
+      play: false,
+      key: false,
+      content: false,
+      items: [
+        {
+          title: "民生问题",
+          text: "家庭暴力",
+          content:
+            "我们家隔壁好像有人在家暴 但今天是我第一天搬过来 不知道是隔壁还是楼下？ 我能听到的东西撞墙的声音，能听到一个男人咬着牙说是不是没完了？不知道要不要报警？一方面不能确定是哪一家，另外一方面也没办法完全确定是存在暴力行为的@青岛公安 但是那个男人咬着牙恶狠狠说话的声音真的很可怕。这个声音大概十分钟就会出现一次，应该是从晚上11点左右就开始了，中间停了很长一段时间，现在又开始了。@青岛交通管理监督 @青岛交警 @青岛新闻网民生在线 @青岛政务 @青岛交通广播FM897 @城阳交警",
+        },
+        {
+          title: "交通问题",
+          text: "市南区交通堵塞严重",
+          content:
+            "王沙路修路好几段是单车道，等公交车的人还站在马路上，本来就一个车道，人一站在那不但堵车，等车的人还有危险，公交车到站一停后面的车都堵起来了，今天为了躲避马路上等车的那几个人（照片上画红圈的就是等公交车的人），前车突然急刹车，导致追尾堵车！王沙路修路工程要到7月份才结束，早高峰晚高峰更是因为公交车停车、乘客等车等原因堵的要命，相关部门能不能好好规划一下？@青岛交通管理监督 @青岛交警 @青岛新闻网民生在线 @青岛政务 @青岛交通广播FM897 @城阳交警",
+        },
+        {
+          title: "物价问题",
+          text: "猪肉持续涨价",
+          content:
+            "今年小麦亩产又增收了 　2021年由于受雨灾影响，延津县小麦播期普遍滞后、播期拉长，晚播弱苗占比偏高。小麦长势好不好、产量稳不稳、增收有没有希望成为众多农户关心的问题。 随着气温逐渐回升，麦田已是一片青绿。农技人员正在观察苗情，种植户在洒药施肥，水肥药一体化设备也正在按照设定好的程序给麦田浇水，田间地头变得忙碌起来。李元智告诉记者，今年苗情看上去不错，产量和收入不会比去年差。 今年小麦亩产又增收了 　2021年由于受雨灾影响，延津县小麦播期普遍滞后、播期拉长，晚播弱苗占比偏高。小麦长势好不好、产量稳不稳、增收有没有希望成为众多农户关心的问题。 随着气温逐渐回升，麦田已是一片青绿。农技人员正在观察苗情，种植户在洒药施肥，水肥药一体化设备也正在按照设定好的程序给麦田浇水，田间地头变得忙碌起来。李元智告诉记者，今年苗情看上去不错，产量和收入不会比去年差。@青岛交通管理监督 @青岛交警 @青岛新闻网民生在线 @青岛政务 @青岛交通广播FM897 @城阳交警",
+        },
+        {
+          title: "民生问题",
+          text: "家庭暴力",
+          content:
+            "我们家隔壁好像有人在家暴 但今天是我第一天搬过来 不知道是隔壁还是楼下？ 我能听到的东西撞墙的声音，能听到一个男人咬着牙说是不是没完了？不知道要不要报警？一方面不能确定是哪一家，另外一方面也没办法完全确定是存在暴力行为的@青岛公安 但是那个男人咬着牙恶狠狠说话的声音真的很可怕。这个声音大概十分钟就会出现一次，应该是从晚上11点左右就开始了，中间停了很长一段时间，现在又开始了。@青岛交通管理监督 @青岛交警 @青岛新闻网民生在线 @青岛政务 @青岛交通广播FM897 @城阳交警",
+        },
+        {
+          title: "交通问题",
+          text: "市南区交通堵塞严重",
+          content:
+            "王沙路修路好几段是单车道，等公交车的人还站在马路上，本来就一个车道，人一站在那不但堵车，等车的人还有危险，公交车到站一停后面的车都堵起来了，今天为了躲避马路上等车的那几个人（照片上画红圈的就是等公交车的人），前车突然急刹车，导致追尾堵车！王沙路修路工程要到7月份才结束，早高峰晚高峰更是因为公交车停车、乘客等车等原因堵的要命，相关部门能不能好好规划一下？@青岛交通管理监督 @青岛交警 @青岛新闻网民生在线 @青岛政务 @青岛交通广播FM897 @城阳交警",
+        },
+        {
+          title: "物价问题",
+          text: "猪肉持续涨价",
+          content:
+            "今年小麦亩产又增收了 　2021年由于受雨灾影响，延津县小麦播期普遍滞后、播期拉长，晚播弱苗占比偏高。小麦长势好不好、产量稳不稳、增收有没有希望成为众多农户关心的问题。 随着气温逐渐回升，麦田已是一片青绿。农技人员正在观察苗情，种植户在洒药施肥，水肥药一体化设备也正在按照设定好的程序给麦田浇水，田间地头变得忙碌起来。李元智告诉记者，今年苗情看上去不错，产量和收入不会比去年差。 今年小麦亩产又增收了 　2021年由于受雨灾影响，延津县小麦播期普遍滞后、播期拉长，晚播弱苗占比偏高。小麦长势好不好、产量稳不稳、增收有没有希望成为众多农户关心的问题。 随着气温逐渐回升，麦田已是一片青绿。农技人员正在观察苗情，种植户在洒药施肥，水肥药一体化设备也正在按照设定好的程序给麦田浇水，田间地头变得忙碌起来。李元智告诉记者，今年苗情看上去不错，产量和收入不会比去年差。@青岛交通管理监督 @青岛交警 @青岛新闻网民生在线 @青岛政务 @青岛交通广播FM897 @城阳交警",
+        },
+        {
+          title: "民生问题",
+          text: "家庭暴力",
+          content:
+            "我们家隔壁好像有人在家暴 但今天是我第一天搬过来 不知道是隔壁还是楼下？ 我能听到的东西撞墙的声音，能听到一个男人咬着牙说是不是没完了？不知道要不要报警？一方面不能确定是哪一家，另外一方面也没办法完全确定是存在暴力行为的@青岛公安 但是那个男人咬着牙恶狠狠说话的声音真的很可怕。这个声音大概十分钟就会出现一次，应该是从晚上11点左右就开始了，中间停了很长一段时间，现在又开始了。@青岛交通管理监督 @青岛交警 @青岛新闻网民生在线 @青岛政务 @青岛交通广播FM897 @城阳交警",
+        },
+        {
+          title: "交通问题",
+          text: "市南区交通堵塞严重",
+          content:
+            "王沙路修路好几段是单车道，等公交车的人还站在马路上，本来就一个车道，人一站在那不但堵车，等车的人还有危险，公交车到站一停后面的车都堵起来了，今天为了躲避马路上等车的那几个人（照片上画红圈的就是等公交车的人），前车突然急刹车，导致追尾堵车！王沙路修路工程要到7月份才结束，早高峰晚高峰更是因为公交车停车、乘客等车等原因堵的要命，相关部门能不能好好规划一下？@青岛交通管理监督 @青岛交警 @青岛新闻网民生在线 @青岛政务 @青岛交通广播FM897 @城阳交警",
+        },
+        {
+          title: "物价问题",
+          text: "猪肉持续涨价",
+          content:
+            "今年小麦亩产又增收了 　2021年由于受雨灾影响，延津县小麦播期普遍滞后、播期拉长，晚播弱苗占比偏高。小麦长势好不好、产量稳不稳、增收有没有希望成为众多农户关心的问题。 随着气温逐渐回升，麦田已是一片青绿。农技人员正在观察苗情，种植户在洒药施肥，水肥药一体化设备也正在按照设定好的程序给麦田浇水，田间地头变得忙碌起来。李元智告诉记者，今年苗情看上去不错，产量和收入不会比去年差。 今年小麦亩产又增收了 　2021年由于受雨灾影响，延津县小麦播期普遍滞后、播期拉长，晚播弱苗占比偏高。小麦长势好不好、产量稳不稳、增收有没有希望成为众多农户关心的问题。 随着气温逐渐回升，麦田已是一片青绿。农技人员正在观察苗情，种植户在洒药施肥，水肥药一体化设备也正在按照设定好的程序给麦田浇水，田间地头变得忙碌起来。李元智告诉记者，今年苗情看上去不错，产量和收入不会比去年差。@青岛交通管理监督 @青岛交警 @青岛新闻网民生在线 @青岛政务 @青岛交通广播FM897 @城阳交警",
+        },
+        {
+          title: "民生问题",
+          text: "家庭暴力",
+          content:
+            "我们家隔壁好像有人在家暴 但今天是我第一天搬过来 不知道是隔壁还是楼下？ 我能听到的东西撞墙的声音，能听到一个男人咬着牙说是不是没完了？不知道要不要报警？一方面不能确定是哪一家，另外一方面也没办法完全确定是存在暴力行为的@青岛公安 但是那个男人咬着牙恶狠狠说话的声音真的很可怕。这个声音大概十分钟就会出现一次，应该是从晚上11点左右就开始了，中间停了很长一段时间，现在又开始了。@青岛交通管理监督 @青岛交警 @青岛新闻网民生在线 @青岛政务 @青岛交通广播FM897 @城阳交警",
+        },
+        {
+          title: "交通问题",
+          text: "市南区交通堵塞严重",
+          content:
+            "王沙路修路好几段是单车道，等公交车的人还站在马路上，本来就一个车道，人一站在那不但堵车，等车的人还有危险，公交车到站一停后面的车都堵起来了，今天为了躲避马路上等车的那几个人（照片上画红圈的就是等公交车的人），前车突然急刹车，导致追尾堵车！王沙路修路工程要到7月份才结束，早高峰晚高峰更是因为公交车停车、乘客等车等原因堵的要命，相关部门能不能好好规划一下？@青岛交通管理监督 @青岛交警 @青岛新闻网民生在线 @青岛政务 @青岛交通广播FM897 @城阳交警",
+        },
+        {
+          title: "物价问题",
+          text: "猪肉持续涨价",
+          content:
+            "今年小麦亩产又增收了 　2021年由于受雨灾影响，延津县小麦播期普遍滞后、播期拉长，晚播弱苗占比偏高。小麦长势好不好、产量稳不稳、增收有没有希望成为众多农户关心的问题。 随着气温逐渐回升，麦田已是一片青绿。农技人员正在观察苗情，种植户在洒药施肥，水肥药一体化设备也正在按照设定好的程序给麦田浇水，田间地头变得忙碌起来。李元智告诉记者，今年苗情看上去不错，产量和收入不会比去年差。 今年小麦亩产又增收了 　2021年由于受雨灾影响，延津县小麦播期普遍滞后、播期拉长，晚播弱苗占比偏高。小麦长势好不好、产量稳不稳、增收有没有希望成为众多农户关心的问题。 随着气温逐渐回升，麦田已是一片青绿。农技人员正在观察苗情，种植户在洒药施肥，水肥药一体化设备也正在按照设定好的程序给麦田浇水，田间地头变得忙碌起来。李元智告诉记者，今年苗情看上去不错，产量和收入不会比去年差。@青岛交通管理监督 @青岛交警 @青岛新闻网民生在线 @青岛政务 @青岛交通广播FM897 @城阳交警",
+        },
+      ],
     };
   },
   methods: {
@@ -232,6 +250,12 @@ export default {
     },
     close() {
       this.bol = !this.bol;
+    },
+    displayon() {
+      this.play = !this.play;
+    },
+    contentview() {
+      this.content = !this.content;
     },
   },
   components: {},
@@ -430,24 +454,37 @@ export default {
   align-items: center;
   overflow: scroll;
 }
-.questionleft {
+.questionleft button {
   margin-top: 0.5rem;
-  width: 13rem;
+  width: 14rem;
   height: 3rem;
+  color: #fff;
+  border: 0;
+  font-size: 1rem;
+  font-weight: 100;
+  text-align: center;
+  font-family: YouYuan;
+  text-shadow: 0.01rem 0.01rem 1px #fff;
   background: linear-gradient(
     to bottom,
-    rgba(250, 251, 252, 1),
-    rgba(250, 251, 252, 0.8)
+    rgba(250, 251, 252, 0.3),
+    rgba(250, 251, 252, 0.2)
   );
   border-radius: 0.2rem;
   padding: 0.2rem 0.5rem;
   display: flex;
   flex-direction: row;
   align-items: center;
-  transition: all 200ms ease-in-out;
+  transition: all 100ms ease-in-out;
 }
-.questionleft:hover {
+.questionleft button:focus {
   height: 3.5rem;
+  background: linear-gradient(
+    to bottom,
+    rgba(250, 251, 252, 1),
+    rgba(250, 251, 252, 0.8)
+  );
+  color: #687684;
 }
 .questionleft .title {
   width: 5rem;
@@ -480,10 +517,12 @@ export default {
 .middle .up {
   height: 8.5rem;
   width: 36rem;
+  color: #fff;
+  text-shadow: 0.01rem 0.01rem 1px #fff;
   background: linear-gradient(
     to bottom,
-    rgba(250, 251, 252, 1),
-    rgba(250, 251, 252, 0.8)
+    rgba(250, 251, 252, 0.5),
+    rgba(250, 251, 252, 0.4)
   );
   border-radius: 0.2rem;
   padding: 1rem;
@@ -491,7 +530,6 @@ export default {
   margin-bottom: 1rem;
   overflow: scroll;
   line-height: 1.2rem;
-  color: #687684;
 }
 .middle .down {
   width: 38rem;
@@ -537,18 +575,51 @@ export default {
   align-items: center;
   overflow: scroll;
 }
+.middle .down .right button {
+  width: 9rem;
+  height: 3rem;
+  margin-top: 1rem;
+  border: 0;
+  border-radius: 0.2rem;
+  background: linear-gradient(
+    to bottom,
+    rgba(250, 251, 252, 1),
+    rgba(250, 251, 252, 1)
+  );
+  font-size: 1.2rem;
+  font-weight: 100;
+  text-align: center;
+  font-family: YouYuan;
+  color: #687684;
+  text-shadow: 0.01rem 0.01rem 1px #687684;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  transition: all 200ms ease-in-out;
+}
+.middle .down .right button:hover {
+  width: 9.5rem;
+  height: 3.2rem;
+}
+.middle .down .right img {
+  width: 1rem;
+}
 .middle .down .right .title {
   margin: 1rem;
-  color: #000;
+  color: #fff;
+  font-size: 1.2rem;
 }
 .middle .down .right .words {
   margin-bottom: 0.5rem;
   width: 8rem;
   height: 3rem;
+  color: #fff;
+  text-shadow: 0.01rem 0.01rem 1px #fff;
   background: linear-gradient(
     to bottom,
-    rgba(250, 251, 252, 1),
-    rgba(250, 251, 252, 0.8)
+    rgba(250, 251, 252, 0.3),
+    rgba(250, 251, 252, 0.2)
   );
   border-radius: 0.2rem;
   padding: 0.2rem 0.5rem;
@@ -576,14 +647,21 @@ export default {
   margin: 1rem;
   color: #000;
 }
-.questionright {
+.questionright button {
   margin-bottom: 0.5rem;
-  width: 9.5rem;
+  width: 10.5rem;
   height: 3rem;
+  color: #fff;
+  border: 0;
+  font-size: 1rem;
+  font-weight: 100;
+  text-align: center;
+  font-family: YouYuan;
+  text-shadow: 0.01rem 0.01rem 1px #fff;
   background: linear-gradient(
     to bottom,
-    rgba(250, 251, 252, 1),
-    rgba(250, 251, 252, 0.8)
+    rgba(250, 251, 252, 0.3),
+    rgba(250, 251, 252, 0.2)
   );
   border-radius: 0.2rem;
   padding: 0.2rem 0.5rem;
@@ -592,8 +670,15 @@ export default {
   align-items: center;
   transition: all 200ms ease-in-out;
 }
-.questionright:hover {
+.questionright button:focus {
   height: 3.5rem;
+  background: linear-gradient(
+    to bottom,
+    rgba(250, 251, 252, 1),
+    rgba(250, 251, 252, 0.8)
+  );
+  color: #687684;
+  border: 0;
 }
 .questionright .title {
   width: 4rem;

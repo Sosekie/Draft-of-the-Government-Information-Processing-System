@@ -3,8 +3,15 @@
     <div class="innerContainer">
       <Background></Background>
       <div class="headBar">
+        <div class="collect">
+          <button @click="toggle">
+            <img src="../assets/collect.png" alt="" />
+          </button>
+        </div>
         <div class="search">
-          <img src="../assets/search.png" alt="" />
+          <router-link to="/Search">
+            <img src="../assets/search.png" alt="" />
+          </router-link>
           <input type="text" placeholder="请搜索您需要的政务信息" />
         </div>
       </div>
@@ -43,6 +50,22 @@
         </div>
       </div>
       <div class="content">
+        <div class="messageBox" v-if="bol" @click="close">
+          <div class="boardout" @click.stop="">
+            <div class="board">
+              <div class="word">数据收集</div>
+              <img src="../assets/linehori.png" alt="" />
+              <div class="workname">收集主题</div>
+              <input type="text" class="miaoshu" placeholder="请输入收集主题" />
+              <div class="workname">舆情收集日期</div>
+              <div class="func">
+                <DatePicker></DatePicker>
+                <LocationSelect></LocationSelect>
+              </div>
+            </div>
+            <div class="chaxun">收集</div>
+          </div>
+        </div>
         <router-view></router-view>
       </div>
     </div>
@@ -50,10 +73,32 @@
 </template>
 
 <script>
+import Vue from "vue";
+import ElementUI from "element-ui";
+Vue.use(ElementUI);
+
 import Background from "./Background";
+import DatePicker from "./functions/datepicker/DatePicker.vue";
+import LocationSelect from "./functions/datepicker/LocationSelect.vue";
+
 export default {
+  data() {
+    return {
+      bol: false,
+    };
+  },
+  methods: {
+    toggle() {
+      this.bol = !this.bol;
+    },
+    close() {
+      this.bol = !this.bol;
+    },
+  },
   components: {
     Background,
+    DatePicker,
+    LocationSelect,
   },
 };
 </script>
@@ -247,9 +292,130 @@ Background {
   -webkit-app-region: drag;
   z-index: 5;
 }
+.headBar .collect {
+  margin-right: 1rem;
+  padding: 0.2rem;
+  border: 0.1rem solid #0bedae;
+  border-radius: 1rem;
+}
+.headBar .collect button {
+  width: 1rem;
+  height: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  background-color: #68768400;
+}
+.headBar .collect img {
+  width: 1rem;
+  height: 1rem;
+}
+
+.messageBox {
+  width: 100%;
+  height: 100%;
+  margin: 2.5rem 0rem 0rem 3.5rem;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: #0006;
+  z-index: 2;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  /* transition: all 200ms ease-in-out; */
+}
+.messageBox .boardout {
+  width: 30rem;
+  margin: 0rem 7rem 5rem 0rem;
+  border-radius: 0.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.messageBox .boardout .board {
+  padding: 1rem;
+  margin: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(250, 251, 252, 1),
+    rgba(250, 251, 252, 0.8)
+  );
+  border-radius: 0.2rem 0.2rem 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.messageBox .board .word {
+  width: 30rem;
+  font-weight: 900;
+  color: #687684;
+}
+.messageBox .board img {
+  width: 30rem;
+  height: 0.05rem;
+  margin-top: 0.5rem;
+}
+.messageBox .board .workname {
+  width: 29rem;
+  margin-top: 0.5rem;
+  outline: medium;
+  font-size: 0.8rem;
+  font-weight: 900;
+  text-align: left;
+  font-family: YouYuan;
+  color: #687684;
+}
+.messageBox .board input {
+  width: 29rem;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  border: 0;
+  border-radius: 0.2rem;
+  background-color: #fff;
+  outline: medium;
+  font-size: 0.8rem;
+  font-weight: 100;
+  text-align: left;
+  font-family: YouYuan;
+  -webkit-app-region: no-drag;
+}
+.messageBox .func {
+  width: 30rem;
+  margin: 1rem 0.5rem 0rem 0.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: left;
+}
+.messageBox .func DatePicker {
+  scale: 0.5;
+}
+.messageBox .chaxun {
+  padding: 0.5rem 1rem;
+  margin: 0;
+  width: 31rem;
+  background: linear-gradient(
+    to bottom,
+    rgba(250, 251, 252, 1),
+    rgba(250, 251, 252, 1)
+  );
+  border-radius: 0 0 0.2rem 0.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+}
+
 .headBar .search {
-  width: 12rem;
-  height: 1.2rem;
+  width: 18rem;
+  height: 1.5rem;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -268,12 +434,13 @@ Background {
   filter: drop-shadow(0 0 0.3rem #0bedae);
 }
 .headBar .search input {
-  width: 9.5rem;
+  width: 15.5rem;
   background-color: #0000;
   border: 0;
   outline: medium;
   color: #0bedae;
   opacity: 1;
+  font-size: 1rem;
   filter: drop-shadow(0 0 0.03rem #0bedae);
   font-weight: 100;
   text-align: center;

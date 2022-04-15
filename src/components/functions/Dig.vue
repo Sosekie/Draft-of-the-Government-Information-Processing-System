@@ -254,7 +254,7 @@ export default {
   flex-direction: column;
 }
 .dig .up {
-  height: 5.5rem;
+  height: 15.5rem;
   width: 66.5rem;
   margin-bottom: 1rem;
   display: flex;
@@ -273,7 +273,7 @@ export default {
 }
 .up img {
   width: 66.5rem;
-  height: 5.5rem;
+  height: 15.5rem;
   opacity: 0.5;
 }
 .up .title {
@@ -282,7 +282,7 @@ export default {
   color: #0bedae;
 }
 .dig .down {
-  height: 29.5rem;
+  height: 19.5rem;
   width: 66.5rem;
   border: 0.1rem solid #778e9577;
   background-color: #778e9522;
@@ -294,8 +294,8 @@ export default {
   display: flex;
   flex-direction: row;
   width: 64.5rem;
-  margin: 0.5rem 0.5rem 0rem 0.5rem;
-  padding: 0.2rem 0.5rem;
+  margin: 1rem 0.5rem 0rem 0.5rem;
+  padding: 1rem 0.5rem;
   background: linear-gradient(
     to right bottom,
     rgba(250, 251, 252, 1),
@@ -378,5 +378,6 @@ export default {
 }
 .dig .down .messageblock:hover .words {
   height: auto;
+  padding: 1rem 0.5rem;
 }
 </style>
