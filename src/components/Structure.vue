@@ -108,6 +108,7 @@ Background {
   transition: all 200ms ease-in-out;
   font-size: 0.8rem;
   color: #0bedae;
+  z-index: 5;
 }
 .leftBar:hover {
   width: 4rem;
@@ -244,6 +245,7 @@ Background {
   align-items: center;
   justify-content: center;
   -webkit-app-region: drag;
+  z-index: 5;
 }
 .headBar .search {
   width: 12rem;

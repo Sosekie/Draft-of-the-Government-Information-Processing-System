@@ -1,18 +1,30 @@
 <template>
-  <div class="dig">
+  <div class="dig" id="message">
     <div class="mod">
       <!-- <router-link to="/Deal/"> -->
       <button class="mod1">诉求处理详情</button>
       <!-- </router-link> -->
       <img src="../../assets/line.png" alt="" />
       <!-- <router-link to="/Deal/deal2"> -->
-      <el-button class="mod2" @click="addData">自定义上传查询</el-button>
+      <button class="mod2" @click="toggle">自定义上传查询</button>
       <!-- </router-link> -->
     </div>
-    <el-dialog title="自定义上传查询" :visible.sync="userVisible">
-      <div>nihao</div>
-    </el-dialog>
     <div class="contentDeal">
+      <div class="messageBox" v-if="bol" @click="close">
+        <div class="boardout" @click.stop="">
+          <div class="board">
+            <div class="word">单条查询</div>
+            <input type="text" class="miaoshu" placeholder="诉求描述" />
+            <img src="../../assets/linehori.png" alt="" />
+            <div class="word">批量查询</div>
+            <div class="func">
+              <button>诉求导入</button>
+              <div class="discrip">?导入格式说明</div>
+            </div>
+          </div>
+          <div class="chaxun">查询</div>
+        </div>
+      </div>
       <div class="contentDeal1">
         <div class="dealleft">
           <div>
@@ -205,18 +217,24 @@
 </template>
 
 <script scoped>
+// import Vue from "vue";
+
 export default {
   name: "Deal",
   data() {
     return {
-      userVisible: false,
+      bol: false,
     };
   },
   methods: {
-    addData() {
-      this.userVisible = true;
+    toggle() {
+      this.bol = !this.bol;
+    },
+    close() {
+      this.bol = !this.bol;
     },
   },
+  components: {},
 };
 </script>
 
@@ -288,16 +306,107 @@ export default {
   justify-content: center;
 }
 
-el-dialog {
-  width: 20rem;
-  height: 20rem;
-  display: absolute;
+.messageBox {
+  width: 100%;
+  height: 100%;
+  margin: 2.5rem 0rem 0rem 3.5rem;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: #0006;
   z-index: 2;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  /* transition: all 200ms ease-in-out; */
 }
-p {
-  padding: 0rem;
-  margin: 0rem;
+.messageBox .boardout {
+  width: 20rem;
+  margin: 0rem 7rem 5rem 0rem;
+  border-radius: 0.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
+.messageBox .boardout .board {
+  padding: 1rem;
+  margin: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(250, 251, 252, 1),
+    rgba(250, 251, 252, 0.8)
+  );
+  border-radius: 0.2rem 0.2rem 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.messageBox .board .word {
+  width: 20rem;
+  font-weight: 900;
+  color: #687684;
+}
+.messageBox .board img {
+  width: 20rem;
+  height: 0.05rem;
+  margin-bottom: 0.5rem;
+}
+.messageBox .board input {
+  width: 18rem;
+  margin: 0.5rem;
+  padding: 0.2rem;
+  border: 0;
+  border-radius: 0.2rem;
+  background-color: #e3dada;
+  outline: medium;
+  font-size: 1rem;
+  font-weight: 100;
+  text-align: center;
+  font-family: YouYuan;
+  -webkit-app-region: no-drag;
+}
+.messageBox .func {
+  width: 20rem;
+  margin: 0.5rem 0.5rem 0rem 0.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: left;
+}
+.messageBox .func button {
+  width: 5rem;
+  height: 2rem;
+  border: 0;
+  border-radius: 0.2rem;
+  background-color: #fff;
+  filter: drop-shadow(1 1 0.01rem #000);
+}
+.messageBox .func .discrip {
+  font-size: 0.6rem;
+  font-weight: 900;
+  color: #687684;
+  filter: drop-shadow(1 1 0.01rem #000);
+}
+.messageBox .chaxun {
+  padding: 0.5rem 1rem;
+  margin: 0;
+  width: 21rem;
+  background: linear-gradient(
+    to bottom,
+    rgba(250, 251, 252, 1),
+    rgba(250, 251, 252, 1)
+  );
+  border-radius: 0 0 0.2rem 0.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+}
+
 .contentDeal1 {
   flex: 34.5rem;
   display: flex;
