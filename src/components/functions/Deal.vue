@@ -27,8 +27,8 @@
       </div>
       <div class="contentDeal1">
         <div class="dealleft">
-          <div class="questionleft" v-for="item in items">
-            <button onclick="clickTab(this)" @click="contentview">
+          <div class="questionleft" v-for="(item, index) in items">
+            <button onclick="clickTab(this)" @click="getIndex1(index)">
               <div class="title">{{ item.title }}</div>
               <div class="bar">|</div>
               <div class="words">{{ item.text }}</div>
@@ -37,18 +37,19 @@
         </div>
         <div class="middle">
           <div class="up">
-            <div v-if="content">
-              我们家隔壁好像有人在家暴 但今天是我第一天搬过来
-              不知道是隔壁还是楼下？
-              我能听到的东西撞墙的声音，能听到一个男人咬着牙说是不是没完了？不知道要不要报警？一方面不能确定是哪一家，另外一方面也没办法完全确定是存在暴力行为的@青岛公安
-              但是那个男人咬着牙恶狠狠说话的声音真的很可怕。这个声音大概十分钟就会出现一次，应该是从晚上11点左右就开始了，中间停了很长一段时间，现在又开始了。@青岛交通管理监督
-              @青岛交警 @青岛新闻网民生在线 @青岛政务 @青岛交通广播FM897
+            <div>
+              <div v-if="show === 1">
+                {{ items[key1].content }}
+              </div>
+              <div v-if="show === 2">
+                {{ items2[key2].content }}
+              </div>
             </div>
           </div>
           <div class="down">
             <div class="left">
               <iframe
-                src="chart.html"
+                src="chartdeal.html"
                 name="topFrame"
                 scrolling="No"
                 frameborder="0"
@@ -72,81 +73,11 @@
         <div class="dealright">
           <div class="titleright">相似工单</div>
           <div>
-            <div class="questionright">
-              <button onclick="clickTab(this)">
-                <div class="title">民生问题</div>
+            <div class="questionright" v-for="(item, index) in items2">
+              <button onclick="clickTab(this)" @click="getIndex2(index)">
+                <div class="title">{{ item.title }}</div>
                 <div class="bar">|</div>
-                <div class="words">楼梯口垃圾堆积</div>
-              </button>
-            </div>
-            <div class="questionright">
-              <button onclick="clickTab(this)">
-                <div class="title">民生问题</div>
-                <div class="bar">|</div>
-                <div class="words">楼梯口垃圾堆积</div>
-              </button>
-            </div>
-            <div class="questionright">
-              <button onclick="clickTab(this)">
-                <div class="title">民生问题</div>
-                <div class="bar">|</div>
-                <div class="words">楼梯口垃圾堆积</div>
-              </button>
-            </div>
-            <div class="questionright">
-              <button onclick="clickTab(this)">
-                <div class="title">民生问题</div>
-                <div class="bar">|</div>
-                <div class="words">楼梯口垃圾堆积</div>
-              </button>
-            </div>
-            <div class="questionright">
-              <button onclick="clickTab(this)">
-                <div class="title">民生问题</div>
-                <div class="bar">|</div>
-                <div class="words">楼梯口垃圾堆积</div>
-              </button>
-            </div>
-            <div class="questionright">
-              <button onclick="clickTab(this)">
-                <div class="title">民生问题</div>
-                <div class="bar">|</div>
-                <div class="words">楼梯口垃圾堆积</div>
-              </button>
-            </div>
-            <div class="questionright">
-              <button onclick="clickTab(this)">
-                <div class="title">民生问题</div>
-                <div class="bar">|</div>
-                <div class="words">楼梯口垃圾堆积</div>
-              </button>
-            </div>
-            <div class="questionright">
-              <button onclick="clickTab(this)">
-                <div class="title">民生问题</div>
-                <div class="bar">|</div>
-                <div class="words">楼梯口垃圾堆积</div>
-              </button>
-            </div>
-            <div class="questionright">
-              <button onclick="clickTab(this)">
-                <div class="title">民生问题</div>
-                <div class="bar">|</div>
-                <div class="words">楼梯口垃圾堆积</div>
-              </button>
-            </div>
-            <div class="questionright">
-              <button onclick="clickTab(this)">
-                <div class="title">民生问题</div>
-                <div class="bar">|</div>
-                <div class="words">楼梯口垃圾堆积</div>
-              </button>
-            </div>
-            <div class="questionright">
-              <button onclick="clickTab(this)">
-                <div class="title">民生问题</div>
-                <div class="bar">|</div>
-                <div class="words">楼梯口垃圾堆积</div>
+                <div class="words">{{ item.text }}</div>
               </button>
             </div>
           </div>
@@ -165,9 +96,107 @@ export default {
     return {
       bol: false,
       play: false,
-      key: false,
+      key1: 1,
+      key2: 1,
       content: false,
+      show: 1,
       items: [
+        {
+          title: "民生问题",
+          text: "疫情复工",
+          content:
+            "健身房，台球厅，饭店各行业都可以复工营业了，电影院在做好防疫的情况下，什么时间可以营业啊，咱这边有没有具体的计划啊，每天的亏损实在扛不住了",
+        },
+        {
+          title: "民生问题",
+          text: "家庭暴力",
+          content:
+            "我们家隔壁好像有人在家暴 但今天是我第一天搬过来 不知道是隔壁还是楼下？ 我能听到的东西撞墙的声音，能听到一个男人咬着牙说是不是没完了？不知道要不要报警？一方面不能确定是哪一家，另外一方面也没办法完全确定是存在暴力行为的@青岛公安 但是那个男人咬着牙恶狠狠说话的声音真的很可怕。这个声音大概十分钟就会出现一次，应该是从晚上11点左右就开始了，中间停了很长一段时间，现在又开始了。@青岛交通管理监督 @青岛交警 @青岛新闻网民生在线 @青岛政务 @青岛交通广播FM897 @城阳交警",
+        },
+        {
+          title: "交通问题",
+          text: "市南区交通堵塞严重",
+          content:
+            "王沙路修路好几段是单车道，等公交车的人还站在马路上，本来就一个车道，人一站在那不但堵车，等车的人还有危险，公交车到站一停后面的车都堵起来了，今天为了躲避马路上等车的那几个人（照片上画红圈的就是等公交车的人），前车突然急刹车，导致追尾堵车！王沙路修路工程要到7月份才结束，早高峰晚高峰更是因为公交车停车、乘客等车等原因堵的要命，相关部门能不能好好规划一下？@青岛交通管理监督 @青岛交警 @青岛新闻网民生在线 @青岛政务 @青岛交通广播FM897 @城阳交警",
+        },
+        {
+          title: "物价问题",
+          text: "猪肉持续涨价",
+          content:
+            "今年小麦亩产又增收了 　2021年由于受雨灾影响，延津县小麦播期普遍滞后、播期拉长，晚播弱苗占比偏高。小麦长势好不好、产量稳不稳、增收有没有希望成为众多农户关心的问题。 随着气温逐渐回升，麦田已是一片青绿。农技人员正在观察苗情，种植户在洒药施肥，水肥药一体化设备也正在按照设定好的程序给麦田浇水，田间地头变得忙碌起来。李元智告诉记者，今年苗情看上去不错，产量和收入不会比去年差。 今年小麦亩产又增收了 　2021年由于受雨灾影响，延津县小麦播期普遍滞后、播期拉长，晚播弱苗占比偏高。小麦长势好不好、产量稳不稳、增收有没有希望成为众多农户关心的问题。 随着气温逐渐回升，麦田已是一片青绿。农技人员正在观察苗情，种植户在洒药施肥，水肥药一体化设备也正在按照设定好的程序给麦田浇水，田间地头变得忙碌起来。李元智告诉记者，今年苗情看上去不错，产量和收入不会比去年差。@青岛交通管理监督 @青岛交警 @青岛新闻网民生在线 @青岛政务 @青岛交通广播FM897 @城阳交警",
+        },
+        {
+          title: "民生问题",
+          text: "家庭暴力",
+          content:
+            "我们家隔壁好像有人在家暴 但今天是我第一天搬过来 不知道是隔壁还是楼下？ 我能听到的东西撞墙的声音，能听到一个男人咬着牙说是不是没完了？不知道要不要报警？一方面不能确定是哪一家，另外一方面也没办法完全确定是存在暴力行为的@青岛公安 但是那个男人咬着牙恶狠狠说话的声音真的很可怕。这个声音大概十分钟就会出现一次，应该是从晚上11点左右就开始了，中间停了很长一段时间，现在又开始了。@青岛交通管理监督 @青岛交警 @青岛新闻网民生在线 @青岛政务 @青岛交通广播FM897 @城阳交警",
+        },
+        {
+          title: "交通问题",
+          text: "市南区交通堵塞严重",
+          content:
+            "王沙路修路好几段是单车道，等公交车的人还站在马路上，本来就一个车道，人一站在那不但堵车，等车的人还有危险，公交车到站一停后面的车都堵起来了，今天为了躲避马路上等车的那几个人（照片上画红圈的就是等公交车的人），前车突然急刹车，导致追尾堵车！王沙路修路工程要到7月份才结束，早高峰晚高峰更是因为公交车停车、乘客等车等原因堵的要命，相关部门能不能好好规划一下？@青岛交通管理监督 @青岛交警 @青岛新闻网民生在线 @青岛政务 @青岛交通广播FM897 @城阳交警",
+        },
+        {
+          title: "物价问题",
+          text: "猪肉持续涨价",
+          content:
+            "今年小麦亩产又增收了 　2021年由于受雨灾影响，延津县小麦播期普遍滞后、播期拉长，晚播弱苗占比偏高。小麦长势好不好、产量稳不稳、增收有没有希望成为众多农户关心的问题。 随着气温逐渐回升，麦田已是一片青绿。农技人员正在观察苗情，种植户在洒药施肥，水肥药一体化设备也正在按照设定好的程序给麦田浇水，田间地头变得忙碌起来。李元智告诉记者，今年苗情看上去不错，产量和收入不会比去年差。 今年小麦亩产又增收了 　2021年由于受雨灾影响，延津县小麦播期普遍滞后、播期拉长，晚播弱苗占比偏高。小麦长势好不好、产量稳不稳、增收有没有希望成为众多农户关心的问题。 随着气温逐渐回升，麦田已是一片青绿。农技人员正在观察苗情，种植户在洒药施肥，水肥药一体化设备也正在按照设定好的程序给麦田浇水，田间地头变得忙碌起来。李元智告诉记者，今年苗情看上去不错，产量和收入不会比去年差。@青岛交通管理监督 @青岛交警 @青岛新闻网民生在线 @青岛政务 @青岛交通广播FM897 @城阳交警",
+        },
+        {
+          title: "民生问题",
+          text: "家庭暴力",
+          content:
+            "我们家隔壁好像有人在家暴 但今天是我第一天搬过来 不知道是隔壁还是楼下？ 我能听到的东西撞墙的声音，能听到一个男人咬着牙说是不是没完了？不知道要不要报警？一方面不能确定是哪一家，另外一方面也没办法完全确定是存在暴力行为的@青岛公安 但是那个男人咬着牙恶狠狠说话的声音真的很可怕。这个声音大概十分钟就会出现一次，应该是从晚上11点左右就开始了，中间停了很长一段时间，现在又开始了。@青岛交通管理监督 @青岛交警 @青岛新闻网民生在线 @青岛政务 @青岛交通广播FM897 @城阳交警",
+        },
+        {
+          title: "交通问题",
+          text: "市南区交通堵塞严重",
+          content:
+            "王沙路修路好几段是单车道，等公交车的人还站在马路上，本来就一个车道，人一站在那不但堵车，等车的人还有危险，公交车到站一停后面的车都堵起来了，今天为了躲避马路上等车的那几个人（照片上画红圈的就是等公交车的人），前车突然急刹车，导致追尾堵车！王沙路修路工程要到7月份才结束，早高峰晚高峰更是因为公交车停车、乘客等车等原因堵的要命，相关部门能不能好好规划一下？@青岛交通管理监督 @青岛交警 @青岛新闻网民生在线 @青岛政务 @青岛交通广播FM897 @城阳交警",
+        },
+        {
+          title: "物价问题",
+          text: "猪肉持续涨价",
+          content:
+            "今年小麦亩产又增收了 　2021年由于受雨灾影响，延津县小麦播期普遍滞后、播期拉长，晚播弱苗占比偏高。小麦长势好不好、产量稳不稳、增收有没有希望成为众多农户关心的问题。 随着气温逐渐回升，麦田已是一片青绿。农技人员正在观察苗情，种植户在洒药施肥，水肥药一体化设备也正在按照设定好的程序给麦田浇水，田间地头变得忙碌起来。李元智告诉记者，今年苗情看上去不错，产量和收入不会比去年差。 今年小麦亩产又增收了 　2021年由于受雨灾影响，延津县小麦播期普遍滞后、播期拉长，晚播弱苗占比偏高。小麦长势好不好、产量稳不稳、增收有没有希望成为众多农户关心的问题。 随着气温逐渐回升，麦田已是一片青绿。农技人员正在观察苗情，种植户在洒药施肥，水肥药一体化设备也正在按照设定好的程序给麦田浇水，田间地头变得忙碌起来。李元智告诉记者，今年苗情看上去不错，产量和收入不会比去年差。@青岛交通管理监督 @青岛交警 @青岛新闻网民生在线 @青岛政务 @青岛交通广播FM897 @城阳交警",
+        },
+        {
+          title: "民生问题",
+          text: "家庭暴力",
+          content:
+            "我们家隔壁好像有人在家暴 但今天是我第一天搬过来 不知道是隔壁还是楼下？ 我能听到的东西撞墙的声音，能听到一个男人咬着牙说是不是没完了？不知道要不要报警？一方面不能确定是哪一家，另外一方面也没办法完全确定是存在暴力行为的@青岛公安 但是那个男人咬着牙恶狠狠说话的声音真的很可怕。这个声音大概十分钟就会出现一次，应该是从晚上11点左右就开始了，中间停了很长一段时间，现在又开始了。@青岛交通管理监督 @青岛交警 @青岛新闻网民生在线 @青岛政务 @青岛交通广播FM897 @城阳交警",
+        },
+        {
+          title: "交通问题",
+          text: "市南区交通堵塞严重",
+          content:
+            "王沙路修路好几段是单车道，等公交车的人还站在马路上，本来就一个车道，人一站在那不但堵车，等车的人还有危险，公交车到站一停后面的车都堵起来了，今天为了躲避马路上等车的那几个人（照片上画红圈的就是等公交车的人），前车突然急刹车，导致追尾堵车！王沙路修路工程要到7月份才结束，早高峰晚高峰更是因为公交车停车、乘客等车等原因堵的要命，相关部门能不能好好规划一下？@青岛交通管理监督 @青岛交警 @青岛新闻网民生在线 @青岛政务 @青岛交通广播FM897 @城阳交警",
+        },
+        {
+          title: "物价问题",
+          text: "猪肉持续涨价",
+          content:
+            "今年小麦亩产又增收了 　2021年由于受雨灾影响，延津县小麦播期普遍滞后、播期拉长，晚播弱苗占比偏高。小麦长势好不好、产量稳不稳、增收有没有希望成为众多农户关心的问题。 随着气温逐渐回升，麦田已是一片青绿。农技人员正在观察苗情，种植户在洒药施肥，水肥药一体化设备也正在按照设定好的程序给麦田浇水，田间地头变得忙碌起来。李元智告诉记者，今年苗情看上去不错，产量和收入不会比去年差。 今年小麦亩产又增收了 　2021年由于受雨灾影响，延津县小麦播期普遍滞后、播期拉长，晚播弱苗占比偏高。小麦长势好不好、产量稳不稳、增收有没有希望成为众多农户关心的问题。 随着气温逐渐回升，麦田已是一片青绿。农技人员正在观察苗情，种植户在洒药施肥，水肥药一体化设备也正在按照设定好的程序给麦田浇水，田间地头变得忙碌起来。李元智告诉记者，今年苗情看上去不错，产量和收入不会比去年差。@青岛交通管理监督 @青岛交警 @青岛新闻网民生在线 @青岛政务 @青岛交通广播FM897 @城阳交警",
+        },
+      ],
+      items2: [
+        {
+          title: "民生问题",
+          text: "允许开业",
+          content:
+            "请问理发店何时能够开业，店内以做好消毒措施，保证严格落实疫情防控政策，希望可以尽早允许开业，我们要挣钱吃饭啊",
+        },
+        {
+          title: "民生问题",
+          text: "影院营业",
+          content: "求问电影院什么时候能开业啊",
+        },
+        {
+          title: "民生问题",
+          text: "解除封控",
+          content: "已经连续多日没有新增病例了，请问何时可以解除封控？",
+        },
         {
           title: "民生问题",
           text: "家庭暴力",
@@ -255,6 +284,16 @@ export default {
     },
     contentview() {
       this.content = !this.content;
+    },
+    getIndex1(index) {
+      this.key1 = index;
+      console.log(this.key);
+      this.show = 1;
+    },
+    getIndex2(index) {
+      this.key2 = index;
+      console.log(this.key);
+      this.show = 2;
     },
   },
   components: {},
@@ -517,7 +556,7 @@ export default {
   height: 8.5rem;
   width: 36rem;
   color: #fff;
-  text-shadow: 0.01rem 0.01rem 1px #fff;
+  /* text-shadow: 0.01rem 0.01rem 1px #fff; */
   background: linear-gradient(
     to bottom,
     rgba(250, 251, 252, 0.5),
@@ -528,7 +567,7 @@ export default {
   text-align: left;
   margin-bottom: 1rem;
   overflow: scroll;
-  line-height: 1.2rem;
+  line-height: 1.5rem;
 }
 .middle .down {
   width: 38rem;

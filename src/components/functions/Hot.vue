@@ -16,7 +16,7 @@
       <div class="up">
         <div class="chart1">
           <iframe
-            src="chart.html"
+            src="new_hot(2).html"
             name="topFrame"
             scrolling="No"
             frameborder="0"
@@ -25,7 +25,7 @@
         </div>
         <div class="chart2">
           <iframe
-            src="chart.html"
+            src="hot_point(2).html"
             name="topFrame"
             scrolling="No"
             frameborder="0"
@@ -38,22 +38,9 @@
           <div class="key">热点词</div>
           <img src="../../assets/line.png" alt="" />
           <div class="list">
-            <div class="word">你好</div>
-            <div class="word">这个</div>
-            <div class="word">科技感</div>
-            <div class="word">地不地道</div>
-            <div class="word">反正</div>
-            <div class="word">就这</div>
-            <div class="word">版吧</div>
-            <div class="word">我</div>
-            <div class="word">懒得</div>
-            <div class="word">再重新</div>
-            <div class="word">做了</div>
-            <div class="word">草</div>
-            <div class="word">草</div>
-            <div class="word">草</div>
-            <div class="word">草</div>
-            <div class="word">草</div>
+            <div class="word" v-for="item in items">
+              {{ item.title }}
+            </div>
           </div>
         </div>
         <div
@@ -64,47 +51,9 @@
           direction="up"
           behavior="scroll"
         >
-          <div class="blog">
+          <div class="blog" v-for="item in items2">
             <img src="../../assets/point.png" alt="" />
-            <div class="tent">这是一条没有价值的微博内容</div>
-          </div>
-          <div class="blog">
-            <img src="../../assets/point.png" alt="" />
-            <div class="tent">
-              这是一条又长又长又长又长又长又长又长又长又长又长又长又长又长又长又长又长又长又长又长又长又长又长又长又没有价值的微博内容
-            </div>
-          </div>
-          <div class="blog">
-            <img src="../../assets/point.png" alt="" />
-            <div class="tent">这是一条没有价值的微博内容</div>
-          </div>
-          <div class="blog">
-            <img src="../../assets/point.png" alt="" />
-            <div class="tent">这是一条没有价值的微博内容</div>
-          </div>
-          <div class="blog">
-            <img src="../../assets/point.png" alt="" />
-            <div class="tent">这是一条没有价值的微博内容</div>
-          </div>
-          <div class="blog">
-            <img src="../../assets/point.png" alt="" />
-            <div class="tent">这是一条没有价值的微博内容</div>
-          </div>
-          <div class="blog">
-            <img src="../../assets/point.png" alt="" />
-            <div class="tent">不想写了我日</div>
-          </div>
-          <div class="blog">
-            <img src="../../assets/point.png" alt="" />
-            <div class="tent">不想写了我日</div>
-          </div>
-          <div class="blog">
-            <img src="../../assets/point.png" alt="" />
-            <div class="tent">不想写了我日</div>
-          </div>
-          <div class="blog">
-            <img src="../../assets/point.png" alt="" />
-            <div class="tent">请你吃粑粑</div>
+            <div class="tent">{{ item.title }}</div>
           </div>
         </div>
       </div>
@@ -119,47 +68,9 @@
           direction="up"
           behavior="scroll"
         >
-          <div class="things">
-            <div class="time">2019</div>
-            <div class="static">处理了一大半但还有一堆事</div>
-          </div>
-          <div class="things">
-            <div class="time">2019</div>
-            <div class="static">
-              处理了一大半但还有一堆一堆一堆一堆一堆一堆一堆一堆一堆一堆一堆一堆一堆一堆一堆一堆一堆一堆一堆一堆一堆一堆一堆事
-            </div>
-          </div>
-          <div class="things">
-            <div class="time">2019</div>
-            <div class="static">事情怎么这么多有必要做吗</div>
-          </div>
-          <div class="things">
-            <div class="time">2019</div>
-            <div class="static">没意思</div>
-          </div>
-          <div class="things">
-            <div class="time">2019</div>
-            <div class="static">有意思</div>
-          </div>
-          <div class="things">
-            <div class="time">2019</div>
-            <div class="static">没意思</div>
-          </div>
-          <div class="things">
-            <div class="time">2019</div>
-            <div class="static">有意思</div>
-          </div>
-          <div class="things">
-            <div class="time">2019</div>
-            <div class="static">没意思</div>
-          </div>
-          <div class="things">
-            <div class="time">2019</div>
-            <div class="static">有意思</div>
-          </div>
-          <div class="things">
-            <div class="time">2019</div>
-            <div class="static">老子要给李弟诚一巴掌</div>
+          <div class="things" v-for="item in items3">
+            <div class="time">{{ item.title }}</div>
+            <div class="static">{{ item.content }}</div>
           </div>
         </marquee>
       </div>
@@ -176,6 +87,144 @@ export default {
   data() {
     return {
       bol: false,
+      items: [
+        {
+          title: "海底捞",
+        },
+        {
+          title: "星巴克",
+        },
+        {
+          title: "赶人",
+        },
+        {
+          title: "失望",
+        },
+        {
+          title: "微信",
+        },
+        {
+          title: "谷爱凌",
+        },
+        {
+          title: "冬奥会",
+        },
+        {
+          title: "雅培",
+        },
+        {
+          title: "民生问题",
+        },
+        {
+          title: "奶粉",
+        },
+      ],
+      items2: [
+        {
+          title:
+            "音九言六:之前全红婵等运动员被恶意抢注商标的事件、逍遥镇胡辣汤事件还历历在目，不是个例了，甚至可以说是猖狂了",
+        },
+        {
+          title:
+            "环球时报:国家知识产权局今天发布通告，依法打击恶意抢注“冰墩墩”、“谷爱凌”等商标注册。",
+        },
+        {
+          title:
+            "沧海缘月:（一）在主观上，实施商标抢注的当事人都具有恶意，即明知或应知他人在先创意、使用商标的情况而抢先向商标局申请注册。（二）申请人采取了不正当手段，在商标注册申请书和提供的相关材料中不真实地填报了有关事项。（三）注册成功，在客观上，被抢注的对象是他人在先使用并有一定影响的商标。",
+        },
+        {
+          title: "心灵辅导:该查，但是不应该罚款，补缴即可",
+        },
+        {
+          title: "金色de秋天:新规不应该只对新时段的适用吗？",
+        },
+        {
+          title: "羽田共:做个小生意，还得交税",
+        },
+        {
+          title: "落花有情199704:好害怕，因为买卖东西,去年流水有点高,担心呀",
+        },
+        {
+          title: "日月星河sky:我们国家可以没有星巴克，但是不能没有人民警察",
+        },
+        {
+          title: "知你故来风:这星巴克也太气人了呀！好大的官威啊！",
+        },
+        {
+          title:
+            "玖玖超爱喝酒:其他品牌一定要严格控制好，孩子喝的奶粉一定要做好，马虎不得",
+        },
+        {
+          title: "诺才才:竟然有这么大的危害，看得我你都有点后怕了",
+        },
+        {
+          title: "axenr:这种给别人打标签的行为真是迷惑",
+        },
+        {
+          title:
+            "晓格格殿下:了解顾客的需求啊，这不正常吗？很多高星酒店十几年前就开始这么做了",
+        },
+        {
+          title:
+            "张小凡有点烦:海底捞老板四川人在中国赚那么多人家扭头就转新加坡籍了，我们应该一起抵制",
+        },
+        {
+          title: "那个元宵ismyle:标记顾客偏好挺正常的，但是有的词句不太喜欢",
+        },
+        {
+          title:
+            "不是你家薇薇:试问现在哪个地方不给顾客打标，只是没让顾客发现罢了",
+        },
+      ],
+      items3: [
+        {
+          title: "2017",
+          content:
+            "海关总署日前发布公告，提醒消费者“暂不通过任何渠道购买”以及“立即暂停食用”美国雅培公司旗下相关婴幼儿产品。",
+        },
+        {
+          title: "2018",
+          content:
+            "近日，雅培官网宣布召回3款婴儿配方奶粉，中国市场涉及到1款——喜康宝贝添婴儿营养补充剂产品。",
+        },
+        {
+          title: "2018",
+          content:
+            "2月18日，美国FDA宣布，雅培一工厂发现致病细菌。不到48小时，中华人民共和国海关总署发布“雅培中国召回其销售的一款特医产品”，提醒消费者立刻暂停食用雅培“喜康宝贝添”母乳强化剂。",
+        },
+        {
+          title: "2019",
+          content:
+            "奶粉出现问题已经不是一次两次了，奶粉作为低幼儿宝宝的重要营养来源，一旦出现问题，危害大就是本身就身体发育未完善的孩子",
+        },
+        {
+          title: "2020",
+          content:
+            "这个标题太吓人，帮大家划一下重点：在中国大陆销售的产品中，除喜康宝贝添婴儿营养补充剂，其他产品是安全的！那么海淘奶粉有必要吗？",
+        },
+        {
+          title: "2021",
+          content:
+            "作为一个母婴博主，不得不说一句大实话，自从三聚氰胺事件之后，中国国产奶粉的1段奶粉，执行标准是最高最严格的，家长们真的可以放心的选择国产奶粉，特别是1段奶粉，性价比高还安心。",
+        },
+        {
+          title: "2022",
+          content:
+            "目前为止国内奶标准高于国际标，很多人就喜欢看营销文，不喜欢看有数据的国家标准",
+        },
+        {
+          title: "2022",
+          content: "我觉得还是坚持母乳或者用我们国产的奶粉放心一点",
+        },
+        {
+          title: "2022",
+          content: "10多位婴儿出现小肠坏死等问题，甚至1例病亡",
+        },
+        {
+          title: "2022",
+          content: "让你们买国产的，你们不信，非要买进口的、海淘的。",
+        },
+      ],
     };
   },
   methods: {
@@ -214,7 +263,11 @@ export default {
   border: 1px solid;
   margin-right: 1rem;
   border: 0.1rem solid #778e9577;
-  background-color: #778e9522;
+  background: linear-gradient(
+    to bottom,
+    rgba(250, 251, 252, 1),
+    rgba(250, 251, 252, 0.8)
+  );
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -224,7 +277,11 @@ export default {
   flex: 25rem;
   border: 1px solid;
   border: 0.1rem solid #778e9577;
-  background-color: #778e9522;
+  background: linear-gradient(
+    to bottom,
+    rgba(250, 251, 252, 1),
+    rgba(250, 251, 252, 0.8)
+  );
   display: flex;
   flex-direction: column;
   align-items: center;
