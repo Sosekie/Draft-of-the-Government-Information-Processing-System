@@ -1,9 +1,6 @@
 <template>
   <div class="dig">
-    <div class="up">
-      <img src="../../assets/titlebar.png" alt="" />
-      <div class="title">隐诉挖掘</div>
-    </div>
+    <div class="up"></div>
     <div class="down">
       <div class="messageblock" v-for="item in items">
         <div class="message">
@@ -26,6 +23,8 @@
 </template>
 
 <script scoped>
+import * as echarts from "echarts";
+
 export default {
   name: "Dig",
   data() {
@@ -147,11 +146,7 @@ export default {
   margin: 0rem;
   /* border: 1px solid #000; */
 }
-.up img {
-  width: 66.5rem;
-  height: 15.5rem;
-  opacity: 0.5;
-}
+
 .up .title {
   position: fixed;
   font-size: 5rem;

@@ -36,7 +36,6 @@
       <div class="down">
         <div class="words">
           <div class="key">热点词</div>
-          <img src="../../assets/line.png" alt="" />
           <div class="list">
             <div class="word" v-for="item in items">
               {{ item.title }}
@@ -60,7 +59,7 @@
     </div>
     <div class="righthot">
       <div class="up">
-        <marquee
+        <div
           class="blockhot"
           onmouseout="this.start();"
           onmouseover="this.stop();"
@@ -69,10 +68,13 @@
           behavior="scroll"
         >
           <div class="things" v-for="item in items3">
-            <div class="time">{{ item.title }}</div>
+            <div class="time">
+              <div class="year">{{ item.year }}</div>
+              <div class="date">{{ item.date }}</div>
+            </div>
             <div class="static">{{ item.content }}</div>
           </div>
-        </marquee>
+        </div>
       </div>
       <div class="down">
         <button type="submit" @click="toggle">数据上传</button>
@@ -178,50 +180,60 @@ export default {
       ],
       items3: [
         {
-          title: "2017",
+          year: "2022",
+          date: "3.23",
           content:
             "海关总署日前发布公告，提醒消费者“暂不通过任何渠道购买”以及“立即暂停食用”美国雅培公司旗下相关婴幼儿产品。",
         },
         {
-          title: "2018",
+          year: "2022",
+          date: "3.26",
           content:
             "近日，雅培官网宣布召回3款婴儿配方奶粉，中国市场涉及到1款——喜康宝贝添婴儿营养补充剂产品。",
         },
         {
-          title: "2018",
+          year: "2022",
+          date: "3.29",
           content:
             "2月18日，美国FDA宣布，雅培一工厂发现致病细菌。不到48小时，中华人民共和国海关总署发布“雅培中国召回其销售的一款特医产品”，提醒消费者立刻暂停食用雅培“喜康宝贝添”母乳强化剂。",
         },
         {
-          title: "2019",
+          year: "2022",
+          date: "4.4",
           content:
             "奶粉出现问题已经不是一次两次了，奶粉作为低幼儿宝宝的重要营养来源，一旦出现问题，危害大就是本身就身体发育未完善的孩子",
         },
         {
-          title: "2020",
+          year: "2022",
+          date: "4.8",
           content:
             "这个标题太吓人，帮大家划一下重点：在中国大陆销售的产品中，除喜康宝贝添婴儿营养补充剂，其他产品是安全的！那么海淘奶粉有必要吗？",
         },
         {
-          title: "2021",
+          year: "2022",
+          date: "4.11",
           content:
             "作为一个母婴博主，不得不说一句大实话，自从三聚氰胺事件之后，中国国产奶粉的1段奶粉，执行标准是最高最严格的，家长们真的可以放心的选择国产奶粉，特别是1段奶粉，性价比高还安心。",
         },
         {
-          title: "2022",
+          year: "2022",
+          date: "4.16",
           content:
             "目前为止国内奶标准高于国际标，很多人就喜欢看营销文，不喜欢看有数据的国家标准",
         },
         {
-          title: "2022",
+          year: "2022",
+          date: "4.20",
           content: "我觉得还是坚持母乳或者用我们国产的奶粉放心一点",
         },
         {
-          title: "2022",
+          year: "2022",
+          date: "4.23",
           content: "10多位婴儿出现小肠坏死等问题，甚至1例病亡",
         },
         {
-          title: "2022",
+          year: "2022",
+          date: "4.24",
           content: "让你们买国产的，你们不信，非要买进口的、海淘的。",
         },
       ],
@@ -240,7 +252,7 @@ export default {
 
 <style scoped>
 .dig {
-  width: 66.5rem;
+  width: 67.5rem;
   height: 36rem;
   /* border: 1px solid; */
   display: flex;
@@ -248,7 +260,7 @@ export default {
 }
 .left {
   flex: 50rem;
-  margin-right: 1rem;
+  margin-right: 0rem;
   display: flex;
   flex-direction: column;
 }
@@ -260,14 +272,12 @@ export default {
 }
 .left .up .chart1 {
   flex: 25rem;
-  border: 1px solid;
   margin-right: 1rem;
-  border: 0.1rem solid #778e9577;
-  background: linear-gradient(
-    to bottom,
-    rgba(250, 251, 252, 1),
-    rgba(250, 251, 252, 0.8)
-  );
+  background-color: #fff;
+  box-shadow: 0px 71px 134px rgba(94, 84, 152, 0.1),
+    0px 35.9437px 58.4156px rgba(94, 84, 152, 0.0675),
+    0px 14.2px 21.775px rgba(94, 84, 152, 0.05),
+    0px 3.10625px 7.74687px rgba(94, 84, 152, 0.0325);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -275,13 +285,11 @@ export default {
 }
 .left .up .chart2 {
   flex: 25rem;
-  border: 1px solid;
-  border: 0.1rem solid #778e9577;
-  background: linear-gradient(
-    to bottom,
-    rgba(250, 251, 252, 1),
-    rgba(250, 251, 252, 0.8)
-  );
+  background-color: #fff;
+  box-shadow: 0px 71px 134px rgba(94, 84, 152, 0.1),
+    0px 35.9437px 58.4156px rgba(94, 84, 152, 0.0675),
+    0px 14.2px 21.775px rgba(94, 84, 152, 0.05),
+    0px 3.10625px 7.74687px rgba(94, 84, 152, 0.0325);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -296,57 +304,71 @@ export default {
 }
 .left .down {
   flex: 18rem;
-  border: 0.1rem solid #778e9577;
-  background-color: #778e9522;
+  background-color: #fff;
+  box-shadow: 0px 71px 134px rgba(94, 84, 152, 0.1),
+    0px 35.9437px 58.4156px rgba(94, 84, 152, 0.0675),
+    0px 14.2px 21.775px rgba(94, 84, 152, 0.05),
+    0px 3.10625px 7.74687px rgba(94, 84, 152, 0.0325);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
 }
 .left .down .words {
-  flex: 2rem;
+  flex: 3rem;
   width: 47rem;
-  border: 0.1rem solid #778e9577;
-  margin: 1rem 0 1rem 0;
-  background-color: #04202c50;
+  /* height: 5rem; */
+  margin: 1rem 0 0rem 0;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-evenly;
+  flex-direction: column;
+  align-items: left;
+  justify-content: left;
 }
 .left .down .words .key {
-  flex: 4rem;
-  text-align: center;
-  color: #0bedae;
-  font-size: 0.8rem;
+  height: 1.8rem;
+  width: 10rem;
+  /* padding: 0.2rem 1.5rem; */
+  text-align: left;
+  color: #6b738d;
+  border-bottom: solid 0.01rem #dce3eb;
+  font-size: 1.5rem;
+  font-weight: bold;
   font-family: YouYuan;
-}
-.left .down .words img {
-  height: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: left;
+  background-color: #fff;
+  /* box-shadow: 0px 71px 134px rgba(94, 84, 152, 0.1),
+    0px 35.9437px 58.4156px rgba(94, 84, 152, 0.0675),
+    0px 14.2px 21.775px rgba(94, 84, 152, 0.05),
+    0px 3.10625px 7.74687px rgba(94, 84, 152, 0.0325); */
 }
 .left .down .words .list {
-  flex: 43rem;
-  height: 2rem;
+  height: 3rem;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: left;
-  margin-left: 0.5rem;
   font-size: 0.8rem;
-  color: white;
+  color: #a6a6a6;
   overflow: scroll;
   white-space: nowrap;
 }
 .left .down .words .list .word {
-  border: 0.1rem solid #778e9577;
   padding: 0.2rem 0.4rem;
   margin: 0rem 0.2rem;
   border-radius: 0.2rem;
   white-space: nowrap;
-  background-color: #778e9522;
+  background-color: #fff;
+  box-shadow: 0px 17px 30px rgba(94, 84, 152, 0.02),
+    0px 8.9437px 15.4156px rgba(94, 84, 152, 0.01275),
+    0px 3.2px 5.775px rgba(94, 84, 152, 0.02),
+    0px 1.50625px 3.74687px rgba(94, 84, 152, 0.01525);
+  font-weight: 900;
 }
 .left .down .sentence {
-  flex: 12rem;
+  flex: 10rem;
   width: 47rem;
   /* border: 0.01rem solid #0bedae77; */
   margin: 0 0 1rem 0;
@@ -370,12 +392,12 @@ export default {
 }
 .left .down .sentence .blog .tent {
   font-size: 0.8rem;
-  color: white;
+  color: #000000;
   overflow: scroll;
   white-space: nowrap;
   opacity: 0.9;
   padding: 0.2rem 0 0 0;
-  border-bottom: solid 0.01rem #0bedae77;
+  border-bottom: solid 0.01rem #dce3eb;
   line-height: 1.3rem;
 }
 .righthot {
@@ -385,53 +407,60 @@ export default {
 }
 .righthot .up {
   flex: 30rem;
-  border: 0.1rem solid #778e9577;
-  background-color: #778e9522;
+  padding: 0 1rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
   margin-bottom: 1rem;
   overflow: scroll;
-  white-space: nowrap;
   height: 29rem;
-}
-.righthot .up .blockhot {
-  margin: 0.5rem;
-  height: 28rem;
-}
-.righthot .up::after {
-  content: "";
-  position: absolute;
-  width: 0.1rem;
-  height: 29rem;
-  margin: 0 12.5rem 0 0;
-  background-color: #0bedae;
-  z-index: -1;
 }
 .righthot .up .blockhot .things {
   display: flex;
   margin-bottom: 1rem;
+  flex-direction: column;
+  background-color: #fff;
+  background-color: #fff;
+  box-shadow: 0px 7px 10px rgba(94, 84, 152, 0.1),
+    0px 3.594px 5.842px rgba(94, 84, 152, 0.0675),
+    0px 1.42px 2.77px rgba(94, 84, 152, 0.05),
+    0px 0.311px 0.775px rgba(94, 84, 152, 0.0325);
+  align-items: left;
+  justify-content: center;
 }
 .righthot .up .blockhot .things .time {
-  padding: 0.1rem 0.4rem 0.2rem 0.4rem;
-  background-color: #127368;
-  height: 0.8rem;
-  color: #0bedae;
-  font-size: 0.8rem;
+  padding: 0.1rem 0.4rem 0rem 0.4rem;
+  height: 1.8rem;
+  color: #6b738d;
+  font-size: 1.5rem;
+  font-weight: bold;
   font-family: YouYuan;
   z-index: 1;
-  margin: 0 0.5rem 0 0;
-  border-radius: 0.8rem;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: left;
+  border-bottom: solid 0.01rem #dce3eb;
+}
+.righthot .up .blockhot .things .time .date {
+  font-size: 1rem;
+  margin-left: 0.5rem;
+  color: #b3b3b3;
 }
 .righthot .up .blockhot .things .static {
-  color: #fff;
+  color: #000;
   font-size: 0.8rem;
   font-family: YouYuan;
   opacity: 0.8;
-  padding: 0.1rem 0rem;
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0.2rem 0.5rem;
+  line-height: 1.5rem;
 }
 .righthot .down {
+  padding: 0 1rem;
   flex: 6rem;
   /* border: 0.1rem solid #778e9577;
   background-color: #778e9522; */
@@ -443,9 +472,13 @@ export default {
 .righthot .down button {
   width: 16.3rem;
   height: 5.7rem;
-  border: 0.1rem solid #778e9577;
-  background-color: #778e9522;
-  color: #0bedae;
+  border: 0;
+  background-color: #fff;
+  box-shadow: 0px 71px 134px rgba(94, 84, 152, 0.1),
+    0px 35.9437px 58.4156px rgba(94, 84, 152, 0.0675),
+    0px 14.2px 21.775px rgba(94, 84, 152, 0.05),
+    0px 3.10625px 7.74687px rgba(94, 84, 152, 0.0325);
+  color: #6b738d;
   font-size: 1rem;
   font-weight: 100;
   font-family: YouYuan;

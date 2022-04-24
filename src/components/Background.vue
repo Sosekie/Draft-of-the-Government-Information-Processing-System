@@ -50,13 +50,13 @@ section {
   position: absolute;
   width: 4rem;
   height: 4rem;
-  background-color: #0bedae22;
-  filter: drop-shadow(0 0 0.5rem #0bedae22);
+  background-color: #0bedae;
+  filter: drop-shadow(0 0 0.5rem #0bedae);
   /* border-radius: 1rem; */
 }
 .Back span:nth-child(3n + 1) {
   background: transparent;
-  border: 0.2rem solid #0bedae22;
+  border: 0.2rem solid #0bedae;
 }
 .Back span:nth-child(1) {
   top: 50%;
@@ -111,27 +111,27 @@ section {
 .Back span:nth-child(11) {
   top: 100%;
   left: 30%;
-  animation: animate 5s linear infinite;
+  animation: animate 34s linear infinite;
 }
 .Back span:nth-child(12) {
   top: 100%;
   left: 70%;
-  animation: animate 3s linear infinite;
+  animation: animate 16s linear infinite;
 }
 .Back span:nth-child(13) {
   top: 100%;
   left: -5%;
-  animation: animate 8s linear infinite;
+  animation: animate 23s linear infinite;
 }
 .Back span:nth-child(14) {
   top: 100%;
   left: 90%;
-  animation: animate 4s linear infinite;
+  animation: animate 15s linear infinite;
 }
 .Back span:nth-child(15) {
   top: 100%;
   left: 50%;
-  animation: animate 10s linear infinite;
+  animation: animate 20s linear infinite;
 }
 .Back span:nth-child(16) {
   top: 70%;
@@ -139,7 +139,7 @@ section {
   width: 10rem;
   height: 10rem;
   border-radius: 5rem;
-  animation: animate1 5s linear infinite;
+  animation: animate1 50s linear infinite;
 }
 .Back span:nth-child(17) {
   top: 100%;
@@ -147,7 +147,7 @@ section {
   width: 5rem;
   height: 5rem;
   border-radius: 5rem;
-  animation: animate1 5s linear infinite;
+  animation: animate1 50s linear infinite;
 }
 .Back span:nth-child(18) {
   top: 100%;
@@ -155,7 +155,7 @@ section {
   width: 10rem;
   height: 10rem;
   border-radius: 5rem;
-  animation: animate1 4s linear infinite;
+  animation: animate1 40s linear infinite;
 }
 .Back span:nth-child(19) {
   top: 110%;
@@ -163,7 +163,7 @@ section {
   width: 10rem;
   height: 10rem;
   border-radius: 5rem;
-  animation: animate1 5s linear infinite;
+  animation: animate1 50s linear infinite;
 }
 .Back span:nth-child(20) {
   top: 60%;
@@ -171,7 +171,7 @@ section {
   width: 5rem;
   height: 5rem;
   border-radius: 5rem;
-  animation: animate1 5s linear infinite;
+  animation: animate1 50s linear infinite;
 }
 
 @keyframes animate {
