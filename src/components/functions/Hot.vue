@@ -325,15 +325,15 @@ export default {
   justify-content: left;
 }
 .left .down .words .key {
-  height: 1.8rem;
+  height: 2rem;
   width: 10rem;
   /* padding: 0.2rem 1.5rem; */
   text-align: left;
   color: #6b738d;
   border-bottom: solid 0.01rem #dce3eb;
   font-size: 1.5rem;
-  font-weight: bold;
-  font-family: YouYuan;
+  font-weight: 700;
+  font-family: YaHei;
   display: flex;
   flex-direction: column;
   align-items: left;
@@ -432,8 +432,8 @@ export default {
   height: 1.8rem;
   color: #6b738d;
   font-size: 1.5rem;
-  font-weight: bold;
-  font-family: YouYuan;
+  font-weight: 500;
+  font-family: YaHei;
   z-index: 1;
   display: flex;
   flex-direction: row;

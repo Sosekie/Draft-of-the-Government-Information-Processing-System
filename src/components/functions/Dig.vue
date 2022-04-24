@@ -1,21 +1,36 @@
 <template>
   <div class="dig">
-    <div class="up"></div>
-    <div class="down">
-      <div class="messageblock" v-for="item in items">
-        <div class="message">
-          <div class="contents">{{ item.content }}</div>
-          <img src="../../assets/line.png" alt="" />
-          <div class="type">{{ item.type }}</div>
-          <img src="../../assets/line.png" alt="" />
-          <div class="date">{{ item.date }}</div>
-          <img src="../../assets/line.png" alt="" />
-          <div class="point">热度：{{ item.point }}</div>
-          <button>+</button>
+    <div class="up">
+      <div class="titlewords">今日各类舆情情况</div>
+      <!-- <div class="digtotal">total</div> -->
+    </div>
+    <div class="middle">
+      <div class="classblock" v-for="item in classes">
+        <div class="lei">{{ item.class }}</div>
+        <div class="leinum">
+          <div class="wordslei">该类舆情总数：</div>
+          {{ item.num }}
         </div>
-        <div class="open">
-          <div class="opendown">down</div>
-          <div class="words">{{ item.content }}</div>
+      </div>
+    </div>
+    <div class="down">
+      <div class="downleft">
+        <div class="func"></div>
+        <div class="graph"></div>
+      </div>
+      <div class="downright">
+        <div class="messageblock" v-for="item in items">
+          <div class="message">
+            <div class="contents">{{ item.content }}</div>
+            <div class="type">{{ item.type }}</div>
+            <div class="date">{{ item.date }}</div>
+            <div class="point">热度：{{ item.point }}</div>
+            <button>+</button>
+          </div>
+          <div class="open">
+            <div class="opendown">down</div>
+            <div class="words">{{ item.content }}</div>
+          </div>
         </div>
       </div>
     </div>
@@ -115,6 +130,32 @@ export default {
           point: "13",
         },
       ],
+      classes: [
+        {
+          class: "安全监管",
+          num: "12",
+        },
+        {
+          class: "城市管理",
+          num: "15",
+        },
+        {
+          class: "交通运输",
+          num: "7",
+        },
+        {
+          class: "经济管理",
+          num: "23",
+        },
+        {
+          class: "科教文卫",
+          num: "6",
+        },
+        {
+          class: "民生社保",
+          num: "33",
+        },
+      ],
     };
   },
 };
@@ -122,65 +163,217 @@ export default {
 
 <style scoped>
 .dig {
-  width: 66.5rem;
+  width: 67.5rem;
   height: 36rem;
   /* border: 1px solid; */
   display: flex;
   flex-direction: column;
 }
 .dig .up {
-  height: 15.5rem;
-  width: 66.5rem;
-  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: row;
+}
+.dig .up .titlewords {
+  height: 2.5rem;
+  width: 30rem;
+  /* padding: 0.2rem 1.5rem; */
+  text-align: left;
+  color: #1b2767;
+  border-bottom: solid 0.01rem #dce3eb;
+  font-size: 1.8rem;
+  font-weight: 900;
+  font-family: YaHei;
+  display: flex;
+}
+.dig .up .digtotal {
+  height: 2.5rem;
+  width: 30rem;
+  /* padding: 0.2rem 1.5rem; */
+  text-align: right;
+  color: #1b2767;
+  border-bottom: solid 0.01rem #dce3eb;
+  font-size: 1.8rem;
+  font-weight: 900;
+  font-family: YaHei;
+  display: flex;
+}
+.dig .middle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-right: 1rem;
+}
+.dig .middle .classblock {
+  padding: 1rem 1rem;
+  margin: 1rem;
+  letter-spacing: normal;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: #fff;
+  transition: all 200ms ease-in-out;
+}
+.dig .middle .classblock:nth-child(1) {
+  color: #55a55e;
+  background: #edffef;
+  box-shadow: 0px 71px 134px rgba(85, 165, 94, 0.1),
+    0px 35.9437px 58.4156px rgba(85, 165, 94, 0.0675),
+    0px 14.2px 21.775px rgba(85, 165, 94, 0.05),
+    0px 3.10625px 7.74687px rgba(85, 165, 94, 0.0325);
+}
+.dig .middle .classblock:nth-child(2) {
+  color: #3a7f92;
+  background: #ecfbff;
+  box-shadow: 0px 71px 134px rgba(58, 127, 146, 0.1),
+    0px 35.9437px 58.4156px rgba(58, 127, 146, 0.0675),
+    0px 14.2px 21.775px rgba(58, 127, 146, 0.05),
+    0px 3.10625px 7.74687px rgba(58, 127, 146, 0.0325);
+}
+.dig .middle .classblock:nth-child(3) {
+  color: #5e5498;
+  background: #f4f2ff;
+  box-shadow: 0px 71px 134px rgba(94, 84, 152, 0.1),
+    0px 35.9437px 58.4156px rgba(94, 84, 152, 0.0675),
+    0px 14.2px 21.775px rgba(94, 84, 152, 0.05),
+    0px 3.10625px 7.74687px rgba(94, 84, 152, 0.0325);
+}
+.dig .middle .classblock:nth-child(4) {
+  color: #9b715d;
+  background: #fff2ec;
+  box-shadow: 0px 71px 134px rgba(155, 113, 93, 0.1),
+    0px 35.9437px 58.4156px rgba(155, 113, 93, 0.0675),
+    0px 14.2px 21.775px rgba(155, 113, 93, 0.05),
+    0px 3.10625px 7.74687px rgba(155, 113, 93, 0.0325);
+}
+.dig .middle .classblock:nth-child(5) {
+  color: #2c5fa6;
+  background: #ecf4ff;
+  box-shadow: 0px 71px 134px rgba(44, 95, 166, 0.1),
+    0px 35.9437px 58.4156px rgba(44, 95, 166, 0.0675),
+    0px 14.2px 21.775px rgba(44, 95, 166, 0.05),
+    0px 3.10625px 7.74687px rgba(44, 95, 166, 0.0325);
+}
+.dig .middle .classblock:nth-child(6) {
+  color: #7d257d;
+  background: #fff7ff;
+  box-shadow: 0px 71px 134px rgba(125, 37, 125, 0.1),
+    0px 35.9437px 58.4156px rgba(125, 37, 125, 0.0675),
+    0px 14.2px 21.775px rgba(125, 37, 125, 0.05),
+    0px 3.10625px 7.74687px rgba(125, 37, 125, 0.0325);
+}
+.dig .middle .classblock .lei {
+  height: 1.6rem;
+  width: 7rem;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 500;
+  font-family: YaHei;
+  letter-spacing: normal;
+  border-bottom: solid 0.01rem #dce3eb;
+
+  transition: all 200ms ease-in-out;
+}
+.dig .middle .classblock .leinum {
+  margin-top: 0.2rem;
+  height: 1rem;
+  width: 7rem;
+  font-size: 1rem;
+  font-weight: 900;
+  font-family: YaHei;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  border: 0.1rem solid #778e9577;
-  background-color: #778e9522;
+  transition: all 200ms ease-in-out;
 }
-.up iframe {
-  width: 20rem;
-  height: 5rem;
-  padding: 0rem;
-  margin: 0rem;
-  /* border: 1px solid #000; */
+.dig .middle .classblock .leinum .wordslei {
+  font-size: 0rem;
+  font-weight: 500;
+  transition: all 100ms ease-in-out;
+}
+.dig .middle .classblock:hover .lei {
+  height: 1.6rem;
+  width: 8rem;
+  letter-spacing: 0.2rem;
+}
+.dig .middle .classblock:hover .leinum {
+  width: 7rem;
+}
+.dig .middle .classblock:hover .leinum .wordslei {
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+.dig .middle .classblock:hover {
+  padding: 1rem 2rem;
 }
 
-.up .title {
-  position: fixed;
-  font-size: 5rem;
-  color: #0bedae;
-}
 .dig .down {
-  height: 19.5rem;
-  width: 66.5rem;
-  border: 0.1rem solid #778e9577;
-  background-color: #778e9522;
+  height: 20.5rem;
+  width: 67.5rem;
+  display: flex;
+  flex-direction: row;
+}
+.dig .down .downleft {
+  width: 29rem;
+  height: 27.7rem;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.dig .down .downleft .func {
+  width: 29rem;
+  height: 27.7rem;
+  background: #fff;
+  box-shadow: 0px 71px 134px rgba(94, 84, 152, 0.1),
+    0px 35.9437px 58.4156px rgba(94, 84, 152, 0.0675),
+    0px 14.2px 21.775px rgba(94, 84, 152, 0.05),
+    0px 3.10625px 7.74687px rgba(94, 84, 152, 0.0325);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.dig .down .downright {
+  padding: 0 0 1rem 1rem;
+  width: 37.5rem;
+  height: 26.7rem;
   overflow: scroll;
+}
+.dig .down .messageblock {
+  width: 35.5rem;
+  display: flex;
+  flex-direction: column;
 }
 .dig .down .message {
   display: flex;
   flex-direction: row;
-  width: 64.5rem;
-  margin: 1rem 0.5rem 0rem 0.5rem;
-  padding: 1rem 0.5rem;
-  background: linear-gradient(
-    to right bottom,
-    rgba(250, 251, 252, 1),
-    rgba(250, 251, 252, 1)
-  );
-  border-radius: 0.2rem;
-  color: #687684;
-  text-shadow: 0.01rem 0.01rem 1px #687684;
+  width: 35.5rem;
+  margin: 0rem 0rem 1rem 0rem;
+  padding: 1rem;
+  background: #fff;
+  box-shadow: 0px 71px 134px rgba(94, 84, 152, 0.1),
+    0px 35.9437px 58.4156px rgba(94, 84, 152, 0.0675),
+    0px 14.2px 21.775px rgba(94, 84, 152, 0.05),
+    0px 3.10625px 7.74687px rgba(94, 84, 152, 0.0325);
+  color: #797c8c;
+  /* text-shadow: 0.01rem 0.01rem 1px #797c8c; */
   z-index: 2;
+}
+.dig .down .messageblock:nth-child(2n + 1) {
+  padding: 0rem 0.5rem;
+}
+.dig .down .messageblock:nth-child(2n + 1) {
+  padding: 0rem 0.25rem;
 }
 .dig .down .message .contents {
   overflow: hidden;
   white-space: nowrap;
-  width: 43.5rem;
+  width: 20.5rem;
+  margin-right: 0.5rem;
 }
 .dig .down .message .type,
 .date,
@@ -192,9 +385,10 @@ export default {
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  border-left: solid 0.1rem #dce3eb;
 }
 .dig .down .message button {
-  margin-left: 1rem;
+  margin-left: 0.2rem;
   width: 1.2rem;
   height: 1.2rem;
   display: flex;
@@ -202,8 +396,12 @@ export default {
   align-items: center;
   justify-content: center;
   border: 0;
-  background-color: #687684;
-  color: #fafbfc;
+  color: #edffef;
+  background: #55a55e;
+  box-shadow: 0px 71px 134px rgba(85, 165, 94, 0.1),
+    0px 35.9437px 58.4156px rgba(85, 165, 94, 0.0675),
+    0px 14.2px 21.775px rgba(85, 165, 94, 0.05),
+    0px 3.10625px 7.74687px rgba(85, 165, 94, 0.0325);
   border-radius: 0.4rem;
 }
 .dig .down .message img {
@@ -219,17 +417,13 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 64.5rem;
+  width: 35.5rem;
   margin: 0rem 0.5rem 0rem 0.5rem;
   padding: 0.2rem 0.5rem;
-  background: linear-gradient(
-    to right bottom,
-    rgba(250, 251, 252, 1),
-    rgba(250, 251, 252, 0.8)
-  );
+  background: #fff;
   border-radius: 0.2rem;
-  color: #687684;
-  text-shadow: 0.01rem 0.01rem 1px #687684;
+  color: #797c8c;
+  /* text-shadow: 0.01rem 0.01rem 1px #687684; */
 }
 .dig .down .open .opendown,
 .words {
@@ -239,13 +433,15 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-size: 0.8rem;
+  background: #fff;
   transition: all 200ms ease-in-out;
 }
 .dig .down .messageblock {
   transition: all 200ms ease-in-out;
 }
 .dig .down .messageblock:hover .open .opendown {
-  height: 1.5rem;
+  height: 0rem;
 }
 .dig .down .messageblock:hover .words {
   height: auto;

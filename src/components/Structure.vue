@@ -125,7 +125,7 @@ Background {
 .content {
   margin: 3.5rem 0rem 1rem 4.5rem;
   /* background-color: #0bedae; */
-  width: 66.5rem;
+  width: 67.5rem;
   height: 36rem;
   z-index: 2;
 }
