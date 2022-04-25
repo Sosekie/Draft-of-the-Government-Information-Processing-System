@@ -15,8 +15,34 @@
     </div>
     <div class="down">
       <div class="downleft">
-        <div class="func"></div>
-        <div class="graph"></div>
+        <div class="func">
+          <div class="funcleft">
+            <div class="graphleft">
+              <div class="titlewords">舆情紧急程度：</div>
+              <div class="titlewordsnum">
+                <div class="num">较急</div>
+              </div>
+              <img src="../../assets/coronashadow.png" alt="" />
+              <img src="../../assets/corona.png" alt="" />
+            </div>
+          </div>
+          <div class="funcright">
+            <div class="up">
+              <div class="title">今日舆情总数：</div>
+              <div class="num">
+                67
+                <div class="danwei">件待处理</div>
+              </div>
+            </div>
+            <div class="down">
+              舆情定位地区
+              <LocationSelect></LocationSelect>
+            </div>
+          </div>
+        </div>
+        <div class="graph">
+          <Bar4dig></Bar4dig>
+        </div>
       </div>
       <div class="downright">
         <div class="messageblock" v-for="item in items">
@@ -26,6 +52,7 @@
             <div class="date">{{ item.date }}</div>
             <div class="point">热度：{{ item.point }}</div>
             <button>+</button>
+            <div class="blank"></div>
           </div>
           <div class="open">
             <div class="opendown">down</div>
@@ -39,6 +66,8 @@
 
 <script scoped>
 import * as echarts from "echarts";
+import LocationSelect from "./datepicker/LocationSelect.vue";
+import Bar4dig from "./graph/bar4dig.vue";
 
 export default {
   name: "Dig",
@@ -157,6 +186,10 @@ export default {
         },
       ],
     };
+  },
+  components: {
+    LocationSelect,
+    Bar4dig,
   },
 };
 </script>
@@ -320,21 +353,160 @@ export default {
   height: 27.7rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 .dig .down .downleft .func {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
   width: 29rem;
-  height: 27.7rem;
-  background: #fff;
-  box-shadow: 0px 71px 134px rgba(94, 84, 152, 0.1),
+  height: 13.5rem;
+  /* padding-bottom: 1rem; */
+}
+.dig .down .downleft .func .graphleft {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 17rem;
+  height: 13.5rem;
+  padding-right: 1rem;
+  /* border: 1px solid #000; */
+}
+.dig .down .downleft .func .graphleft img {
+  position: fixed;
+  width: 12.5rem;
+  margin-left: 2.5rem;
+  margin-top: 1rem;
+  z-index: -1;
+  transition: all 500ms ease-in-out;
+}
+.dig .down .downleft .func .graphleft:hover img {
+  width: 15.5rem;
+  margin-left: 1rem;
+  margin-top: -0.5rem;
+}
+.dig .down .downleft .func .graphleft .titlewords {
+  position: related;
+  width: 10rem;
+  height: 1.5rem;
+  text-align: left top;
+  color: #5e5498;
+  border-bottom: solid 0.01rem #dce3eb;
+  font-size: 1rem;
+  font-weight: 900;
+  font-family: YaHei;
+}
+.dig .down .downleft .func .graphleft .titlewordsnum {
+  position: related;
+  width: 18rem;
+  height: 12rem;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+.dig .down .downleft .func .graphleft .titlewordsnum .num {
+  width: 5rem;
+  height: 2rem;
+  margin: 0 1rem 1rem 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background: #5e5498;
+  box-shadow: 0px 71px 134px rgba(94, 84, 152, 1),
+    0px 35.9437px 58.4156px rgba(94, 84, 152, 0.675),
+    0px 14.2px 21.775px rgba(94, 84, 152, 0.5),
+    0px 3.10625px 7.74687px rgba(94, 84, 152, 0.325);
+  border-radius: 0.5rem 0rem 0.5rem 0rem;
+  color: #f4f2ff;
+  font-size: 1.2rem;
+  font-weight: 900;
+  font-family: YaHei;
+  transition: all 500ms ease-in-out;
+}
+.dig .down .downleft .func .graphleft .titlewordsnum:hover .num {
+  width: 8rem;
+  height: 2rem;
+}
+
+.dig .down .downleft .func .funcright {
+  display: flex;
+  flex-direction: column;
+  width: 11rem;
+  height: 13.5rem;
+}
+.dig .down .downleft .func .funcright .up {
+  display: flex;
+  flex-direction: column;
+  width: 8.6rem;
+  height: 4.1rem;
+  margin-bottom: 1rem;
+  /* background: #fff0; */
+  border: 0.2rem solid #fff;
+  box-shadow: inset 0px 71px 134px rgba(94, 84, 152, 0.1),
     0px 35.9437px 58.4156px rgba(94, 84, 152, 0.0675),
     0px 14.2px 21.775px rgba(94, 84, 152, 0.05),
     0px 3.10625px 7.74687px rgba(94, 84, 152, 0.0325);
+  padding: 1rem;
+}
+.dig .down .downleft .func .funcright .up .title {
+  width: 9rem;
+  height: 2rem;
+  margin-bottom: 1rem;
+  color: #b3b3b3;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: YaHei;
+}
+.dig .down .downleft .func .funcright .up .num {
+  width: 9rem;
+  height: 2rem;
+  color: #6b738d;
+  font-size: 2rem;
+  font-weight: 900;
+  font-family: YaHei;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+.dig .down .downleft .func .funcright .up .num .danwei {
+  font-size: 0.8rem;
+  font-weight: 900;
+  margin-left: 0.5rem;
+  color: #b3b3b3;
+}
+.dig .down .downleft .func .funcright .down {
   display: flex;
   flex-direction: column;
+  padding: 1rem 0 0 1rem;
+  width: 9.6rem;
+  height: 3.6rem;
+  border: 0.2rem solid #fff;
+  box-shadow: inset 0px 71px 134px rgba(94, 84, 152, 0.1),
+    0px 35.9437px 58.4156px rgba(94, 84, 152, 0.0675),
+    0px 14.2px 21.775px rgba(94, 84, 152, 0.05),
+    0px 3.10625px 7.74687px rgba(94, 84, 152, 0.0325);
+  color: #b3b3b3;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: YaHei;
+}
+.dig .down .downleft .func .funcright .down LocationSelect {
+  margin-top: 0.5rem;
+}
+
+.dig .down .downleft .graph {
+  display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
+  width: 29rem;
+  height: 14.2rem;
+  background: #ebeaf055;
+  overflow: hidden;
 }
 
 .dig .down .downright {
@@ -361,18 +533,17 @@ export default {
     0px 3.10625px 7.74687px rgba(94, 84, 152, 0.0325);
   color: #797c8c;
   /* text-shadow: 0.01rem 0.01rem 1px #797c8c; */
-  z-index: 2;
 }
 .dig .down .messageblock:nth-child(2n + 1) {
-  padding: 0rem 0.5rem;
+  padding: 0rem 1rem 0 1rem;
 }
-.dig .down .messageblock:nth-child(2n + 1) {
-  padding: 0rem 0.25rem;
+.dig .down .messageblock:nth-child(3n + 2) {
+  padding: 0rem 2rem 0 2rem;
 }
 .dig .down .message .contents {
   overflow: hidden;
   white-space: nowrap;
-  width: 20.5rem;
+  width: 16.5rem;
   margin-right: 0.5rem;
 }
 .dig .down .message .type,
@@ -403,6 +574,9 @@ export default {
     0px 14.2px 21.775px rgba(85, 165, 94, 0.05),
     0px 3.10625px 7.74687px rgba(85, 165, 94, 0.0325);
   border-radius: 0.4rem;
+}
+.dig .down .message .blank{
+  width: 2rem;
 }
 .dig .down .message img {
   height: 1.2rem;

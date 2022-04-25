@@ -3,14 +3,14 @@
     <el-select
       v-model="value"
       placeholder="选择地区"
-      style="width: 7rem; color: #000"
+      style="width: 7rem; height: 2rem; color: #000"
     >
       <el-option
         v-for="item in options"
         :key="item.value"
         :label="item.label"
         :value="item.value"
-        style="width: 6rem"
+        style="width: 7rem; height: 2rem"
       >
       </el-option>
     </el-select>
@@ -56,8 +56,16 @@ export default {
 </script>
 <style scoped>
 .selectbox {
-  width: 8rem;
+  width: 7rem;
+  height: 2rem;
   overflow: hidden;
-  margin: 0 1rem;
+  margin: 0 1rem 1rem 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+el-select {
+  background-color: #fff0;
 }
 </style>
