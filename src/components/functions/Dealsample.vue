@@ -1,73 +1,82 @@
 <template>
-  <div class="dig">
-    <div class="messageBox" v-if="bol" @click="close">
-      <div class="boardout" @click.stop="">
-        <div class="board">
-          <div class="word">单条查询</div>
-          <input type="text" class="miaoshu" placeholder="诉求描述" />
-          <img src="../../assets/linehori.png" alt="" />
-          <div class="word">批量查询</div>
-          <div class="func">
-            <button>诉求导入</button>
-            <div class="discrip">?导入格式说明</div>
+  <div class="dig" id="message">
+    <div class="mod">
+      <!-- <router-link to="/Deal/"> -->
+      <button class="mod1">诉求处理详情</button>
+      <!-- </router-link> -->
+      <img src="../../assets/line.png" alt="" />
+      <!-- <router-link to="/Deal/deal2"> -->
+      <button class="mod2" @click="toggle">自定义上传查询</button>
+      <!-- </router-link> -->
+    </div>
+    <div class="contentDeal">
+      <div class="messageBox" v-if="bol" @click="close">
+        <div class="boardout" @click.stop="">
+          <div class="board">
+            <div class="word">单条查询</div>
+            <input type="text" class="miaoshu" placeholder="诉求描述" />
+            <img src="../../assets/linehori.png" alt="" />
+            <div class="word">批量查询</div>
+            <div class="func">
+              <button>诉求导入</button>
+              <div class="discrip">?导入格式说明</div>
+            </div>
           </div>
-        </div>
-        <div class="chaxun">查询</div>
-      </div>
-    </div>
-    <div class="up">
-      <div class="titlewords">待处理工单</div>
-      <div class="shangchuan">
-        <button class="mod2" @click="toggle">
-          <img src="../../assets/point.png" alt="" />
-          自定义上传查询
-        </button>
-      </div>
-    </div>
-    <div class="middle">
-      <div class="classblock" v-for="(item, index) in items">
-        <button onclick="clickTab(this)" @click="getIndex(index)">
-          <div class="lei">{{ item.title }}</div>
-          <div class="leinum">{{ item.text }}</div>
-        </button>
-      </div>
-    </div>
-    <div class="down">
-      <div class="downup">
-        <div class="dealcontent">
-          <button @click="displayon">
-            <img src="../../assets/point.png" alt="" />智能转办
-          </button>
-          <div class="titlewords">工单内容</div>
-          <div class="tents" v-if="show === 1">
-            {{ items[key].content }}
-          </div>
-        </div>
-        <div class="dealgraph" v-if="play">
-          <iframe
-            src="chartdeal.html"
-            name="topFrame"
-            scrolling="No"
-            frameborder="0"
-            class="topFrame"
-          ></iframe>
+          <div class="chaxun">查询</div>
         </div>
       </div>
-      <div class="downdown" v-if="play">
-        <div class="dealsuggestion">
-          <div class="titlewords">处理意见</div>
-          <div class="n3">市人民政府办公厅</div>
-          <div class="n2">市社会保障局</div>
-          <div class="n1">市文化和旅游局</div>
-        </div>
-        <div class="similar">
-          <div class="simititle">相似工单</div>
-          <div class="classblock" v-for="(item, index) in items">
+      <div class="contentDeal1">
+        <div class="dealleft">
+          <div class="questionleft" v-for="(item, index) in items">
             <button onclick="clickTab(this)" @click="getIndex(index)">
-              <div class="lei">{{ item.title }}</div>
-              <div class="leinum">{{ item.text }}</div>
-              <div class="leicontent">{{ item.content }}</div>
+              <div class="title">{{ item.title }}</div>
+              <div class="bar">|</div>
+              <div class="words">{{ item.text }}</div>
             </button>
+          </div>
+        </div>
+        <div class="middle">
+          <div class="up">
+            <div>
+              <div v-if="show === 1">
+                {{ items[key].content }}
+              </div>
+            </div>
+          </div>
+          <div class="down">
+            <div class="left">
+              <iframe
+                src="chartdeal.html"
+                name="topFrame"
+                scrolling="No"
+                frameborder="0"
+                class="topFrame"
+                v-if="play"
+              ></iframe>
+            </div>
+            <div class="right">
+              <button @click="displayon">
+                <img src="../../assets/point.png" alt="" />智能转办
+              </button>
+              <div class="title">处理建议</div>
+              <div v-if="play">
+                <div class="words">市文化和旅游局</div>
+                <div class="words">市社会保障局</div>
+                <div class="words">市人民政府办公厅</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="dealright">
+          <div class="titleright">相似工单</div>
+          <div>
+            <div class="questionright" v-for="(item, index) in items2">
+              <button onclick="clickTab(this)" @click="getIndex2(index)">
+                <div class="title">{{ item.title }}</div>
+                <div class="bar">|</div>
+                <div class="words">{{ item.text }}</div>
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -76,9 +85,7 @@
 </template>
 
 <script scoped>
-import * as echarts from "echarts";
-import LocationSelect from "./datepicker/LocationSelect.vue";
-import Bar4dig from "./graph/bar4dig.vue";
+// import Vue from "vue";
 
 export default {
   name: "Deal",
@@ -86,7 +93,7 @@ export default {
     return {
       bol: false,
       play: false,
-      key: 1,
+      key: 0,
       content: false,
       show: 1,
       items: [
@@ -276,443 +283,80 @@ export default {
     },
     getIndex(index) {
       this.key = index;
-      console.log(this.key);
+      // console.log(this.key);
       this.show = 1;
     },
   },
-  components: {
-    LocationSelect,
-    Bar4dig,
-  },
+  components: {},
 };
 </script>
 
 <style scoped>
 .dig {
-  width: 67.5rem;
+  width: 66.5rem;
   height: 36rem;
   /* border: 1px solid; */
   display: flex;
   flex-direction: column;
 }
-.dig .up {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
+.mod {
+  flex: 1.5rem;
+  /* border: 1px solid; */
+  height: 1.5rem;
   width: 66.5rem;
-}
-.dig .up .titlewords {
-  height: 2.5rem;
-  width: 30rem;
-  /* padding: 0.2rem 1.5rem; */
-  text-align: left;
-  color: #1b2767;
-  border-bottom: solid 0.01rem #dce3eb;
-  font-size: 1.8rem;
-  font-weight: 900;
-  font-family: YaHei;
-  display: flex;
-}
-.dig .up .shangchuan {
-  height: 2.5rem;
-  width: 36.5rem;
-  /* padding: 0.2rem 1.5rem; */
-  text-align: left;
-  color: #1b2767;
-  /* border-bottom: solid 0.01rem #dce3eb; */
-  font-size: 1.8rem;
-  font-weight: 900;
-  font-family: YaHei;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-end;
-  justify-content: flex-end;
-}
-.dig .up .shangchuan button {
-  position: absolute;
-  border: 0;
-  width: 12rem;
-  height: 2rem;
-  /* margin: 13rem 1rem 1rem 26.5rem; */
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  background: #5e5498;
-  box-shadow: 0px 11px 134px rgba(94, 84, 152, 0.5),
-    0px 25.9437px 58.4156px rgba(94, 84, 152, 0.375),
-    0px 4.2px 21.775px rgba(94, 84, 152, 0.2),
-    0px 3.10625px 7.74687px rgba(94, 84, 152, 0.125);
-  border-radius: 0.5rem;
-  color: #f4f2ff;
-  font-size: 1.2rem;
-  font-weight: 900;
-  font-family: YaHei;
-  transition: all 500ms ease-in-out;
 }
-.dig .up .shangchuan img {
-  width: 1rem;
+.mod img {
+  height: 0.8rem;
+  margin: 0 0.5rem;
 }
-.dig .up .shangchuan button:hover {
-  width: 15rem;
-}
-.dig .middle {
-  width: 67.5rem;
-  display: flex;
-  height: auto;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  margin-right: 1rem;
-  overflow-y: scroll;
-}
-.classblock {
-  margin: 1rem;
-  height: auto;
-  width: auto;
-  letter-spacing: normal;
-  display: flex;
-  flex-direction: column;
-  background-color: #fff;
-  transition: all 200ms ease-in-out;
-  white-space: nowrap;
-}
-.classblock button {
-  border: 0;
-  padding: 1rem 1rem;
-  display: flex;
-  height: auto;
-  width: auto;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-  background-color: #fff0;
-  transition: all 200ms ease-in-out;
-}
-.classblock:nth-child(n) button {
-  color: #55a55e;
-  background: #edffef;
-  box-shadow: 0px 71px 134px rgba(85, 165, 94, 0.1),
-    0px 35.9437px 58.4156px rgba(85, 165, 94, 0.0675),
-    0px 14.2px 21.775px rgba(85, 165, 94, 0.05),
-    0px 3.10625px 7.74687px rgba(85, 165, 94, 0.0325);
-}
-.classblock:nth-child(2n) button {
-  color: #3a7f92;
-  background: #ecfbff;
-  box-shadow: 0px 71px 134px rgba(58, 127, 146, 0.1),
-    0px 35.9437px 58.4156px rgba(58, 127, 146, 0.0675),
-    0px 14.2px 21.775px rgba(58, 127, 146, 0.05),
-    0px 3.10625px 7.74687px rgba(58, 127, 146, 0.0325);
-}
-.classblock:nth-child(3n) button {
-  color: #5e5498;
-  background: #f4f2ff;
-  box-shadow: 0px 71px 134px rgba(94, 84, 152, 0.1),
-    0px 35.9437px 58.4156px rgba(94, 84, 152, 0.0675),
-    0px 14.2px 21.775px rgba(94, 84, 152, 0.05),
-    0px 3.10625px 7.74687px rgba(94, 84, 152, 0.0325);
-}
-.classblock:nth-child(4n) button {
-  color: #9b715d;
-  background: #fff2ec;
-  box-shadow: 0px 71px 134px rgba(155, 113, 93, 0.1),
-    0px 35.9437px 58.4156px rgba(155, 113, 93, 0.0675),
-    0px 14.2px 21.775px rgba(155, 113, 93, 0.05),
-    0px 3.10625px 7.74687px rgba(155, 113, 93, 0.0325);
-}
-.classblock:nth-child(5n) button {
-  color: #2c5fa6;
-  background: #ecf4ff;
-  box-shadow: 0px 71px 134px rgba(44, 95, 166, 0.1),
-    0px 35.9437px 58.4156px rgba(44, 95, 166, 0.0675),
-    0px 14.2px 21.775px rgba(44, 95, 166, 0.05),
-    0px 3.10625px 7.74687px rgba(44, 95, 166, 0.0325);
-}
-.classblock:nth-child(6n) button {
-  color: #7d257d;
-  background: #fff7ff;
-  box-shadow: 0px 71px 134px rgba(125, 37, 125, 0.1),
-    0px 35.9437px 58.4156px rgba(125, 37, 125, 0.0675),
-    0px 14.2px 21.775px rgba(125, 37, 125, 0.05),
-    0px 3.10625px 7.74687px rgba(125, 37, 125, 0.0325);
-}
-.classblock .lei {
-  height: auto;
-  width: auto;
-  text-align: center;
-  font-size: 1.2rem;
-  font-weight: 500;
-  font-family: YaHei;
-  letter-spacing: normal;
-  border-bottom: solid 0.01rem #dce3eb;
-
-  transition: all 200ms ease-in-out;
-}
-.classblock .leinum {
-  margin-top: 0.2rem;
-  height: auto;
-  width: auto;
-  font-size: 1rem;
-  font-weight: 500;
-  font-family: YaHei;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  transition: all 200ms ease-in-out;
-}
-.classblock .leinum .wordslei {
-  font-size: 0rem;
-  font-weight: 500;
-  transition: all 100ms ease-in-out;
-}
-.classblock:hover .lei {
-  height: 1.6rem;
-  width: 8rem;
-  letter-spacing: 0.2rem;
-}
-.classblock:hover .leinum {
-  width: 7rem;
-}
-.classblock:hover .leinum .wordslei {
-  font-size: 0.8rem;
-  font-weight: 500;
-}
-.classblock:hover {
-  padding: 0rem 1rem;
-}
-.classblock:hover button {
-  padding: 1rem 1rem;
-}
-.dig .down {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 66.5rem;
-  height: 26rem;
-}
-.dig .down .downup {
-  height: 15rem;
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 1rem;
-}
-.down .dealcontent {
-  position: related;
-  background: #fff;
-  box-shadow: 0px 71px 134px rgba(94, 84, 152, 0.1),
-    0px 35.9437px 58.4156px rgba(94, 84, 152, 0.0675),
-    0px 14.2px 21.775px rgba(94, 84, 152, 0.05),
-    0px 3.10625px 7.74687px rgba(94, 84, 152, 0.0325);
-  width: 36.5rem;
-  height: 15rem;
-}
-.down .dealcontent .titlewords {
-  position: related;
-  width: 15rem;
-  height: 2rem;
-  text-align: left top;
-  color: #5e5498;
-  border-bottom: solid 0.01rem #dce3eb;
-  font-size: 1.5rem;
-  font-weight: 900;
-  font-family: YaHei;
-  margin: 1rem 0 0 1rem;
-}
-.down .dealcontent .tents {
-  margin: 0 1rem 1rem 1rem;
-  font-family: YouYuan;
-  color: #797c8c;
-  line-height: 1.8rem;
-  overflow: scroll;
-  width: 34.5rem;
-  height: 11rem;
-}
-.down .dealcontent button {
-  position: absolute;
-  border: 0;
-  width: 10rem;
-  height: 2rem;
-  margin: 13rem 1rem 1rem 26.5rem;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  background: #5e5498;
-  box-shadow: 0px 11px 134px rgba(94, 84, 152, 0.5),
-    0px 25.9437px 58.4156px rgba(94, 84, 152, 0.375),
-    0px 4.2px 21.775px rgba(94, 84, 152, 0.2),
-    0px 3.10625px 7.74687px rgba(94, 84, 152, 0.125);
-  border-radius: 0.5rem 0rem 0rem 0rem;
-  color: #f4f2ff;
-  font-size: 1.2rem;
-  font-weight: 900;
-  font-family: YaHei;
-  transition: all 1000ms ease-in-out;
-  opacity: 0;
-}
-.down .dealcontent button img {
-  width: 1rem;
-}
-.down .dealcontent:hover button {
-  opacity: 1;
-}
-
-.down .dealgraph {
-  position: related;
-  width: 28.6rem;
-  height: 14.6rem;
-  margin-left: 1rem;
-  border: 0.2rem solid #fff;
-  box-shadow: inset 0px 71px 134px rgba(94, 84, 152, 0.1),
-    0px 35.9437px 58.4156px rgba(94, 84, 152, 0.0675),
-    0px 14.2px 21.775px rgba(94, 84, 152, 0.05),
-    0px 3.10625px 7.74687px rgba(94, 84, 152, 0.0325);
-}
-.down .dealgraph iframe {
-  width: 28.6rem;
-  height: 14.6rem;
-}
-
-.dig .down .downdown {
-  display: flex;
-  flex-direction: row;
-}
-.down .dealsuggestion {
-  position: related;
-  /* background: #fff;
-  box-shadow: 0px 71px 134px rgba(94, 84, 152, 0.1),
-    0px 35.9437px 58.4156px rgba(94, 84, 152, 0.0675),
-    0px 14.2px 21.775px rgba(94, 84, 152, 0.05),
-    0px 3.10625px 7.74687px rgba(94, 84, 152, 0.0325); */
-  width: 21.5rem;
-  height: 10rem;
-  display: flex;
-  flex-direction: column;
-}
-.down .dealsuggestion .titlewords {
-  position: related;
+.mod button {
   width: 10rem;
   height: 1.5rem;
-  text-align: left top;
-  color: #5e5498;
-  border-bottom: solid 0.01rem #5e5498;
+  border: 0.1rem solid #778e9577;
+  background-color: #778e9522;
+  color: #0bedae;
   font-size: 1rem;
-  font-weight: 900;
-  font-family: YaHei;
-  /* margin: 1rem 0 0 1rem; */
+  font-weight: 100;
+  font-family: YouYuan;
+  transition: all 200ms ease-in-out;
 }
-.down .dealsuggestion .n1 {
-  position: fixed;
-  padding: 0.5rem;
-  font-size: 1.2rem;
-  font-weight: 900;
-  width: auto;
-  height: auto;
-  color: #55a55e;
-  border-radius: 0.2rem;
-  background: #edffef;
-  box-shadow: 0px 71px 134px rgba(85, 165, 94, 0.1),
-    0px 35.9437px 58.4156px rgba(85, 165, 94, 0.0675),
-    0px 14.2px 21.775px rgba(85, 165, 94, 0.05),
-    0px 3.10625px 7.74687px rgba(85, 165, 94, 0.0325);
-  margin: 3rem 0 0 2rem;
+.mod button:hover {
+  background-color: #0bedae;
+  color: #fff;
+  font-weight: 500;
 }
-.down .dealsuggestion .n2 {
-  position: fixed;
-  padding: 0.5rem;
-  font-size: 1.2rem;
-  font-weight: 900;
-  width: auto;
-  height: auto;
-  color: #5e5498;
-  background: #f4f2ff;
-  box-shadow: 0px 71px 134px rgba(94, 84, 152, 0.1),
-    0px 35.9437px 58.4156px rgba(94, 84, 152, 0.0675),
-    0px 14.2px 21.775px rgba(94, 84, 152, 0.05),
-    0px 3.10625px 7.74687px rgba(94, 84, 152, 0.0325);
-  margin: 4.5rem 0 0 10rem;
-}
-.down .dealsuggestion .n3 {
-  position: fixed;
-  padding: 0.5rem;
-  font-size: 1.2rem;
-  font-weight: 900;
-  width: auto;
-  height: auto;
-  color: #9b715d;
-  background: #fff2ec;
-  box-shadow: 0px 71px 134px rgba(155, 113, 93, 0.1),
-    0px 35.9437px 58.4156px rgba(155, 113, 93, 0.0675),
-    0px 14.2px 21.775px rgba(155, 113, 93, 0.05),
-    0px 3.10625px 7.74687px rgba(155, 113, 93, 0.0325);
-  margin: 6.5rem 0 0 3rem;
-}
-
-.down .similar {
-  position: related;
-  width: 44rem;
-  height: 10rem;
-  margin-left: 1rem;
-  display: flex;
-  height: auto;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
-  overflow: scroll;
-}
-.down .similar .simititle {
-  position: absolute;
+.mod el-button {
   width: 10rem;
-  height: 2rem;
+  height: 1.5rem;
+  border: 0.1rem solid #778e9577;
+  background-color: #778e9522;
+  color: #0bedae;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  background: #5e5498;
-  box-shadow: 0px 11px 134px rgba(94, 84, 152, 0.5),
-    0px 25.9437px 58.4156px rgba(94, 84, 152, 0.375),
-    0px 4.2px 21.775px rgba(94, 84, 152, 0.2),
-    0px 3.10625px 7.74687px rgba(94, 84, 152, 0.125);
-  border-radius: 0rem 0rem 0.5rem 0rem;
-  color: #f4f2ff;
-  font-size: 1.2rem;
-  font-weight: 900;
-  font-family: YaHei;
-  transition: all 500ms ease-in-out;
-  opacity: 1;
-}
-.down .similar:hover .simititle {
-  opacity: 0;
-}
-.down .similar .classblock button {
-  height: 10rem;
-  padding: 1rem 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-}
-.down .similar .classblock:hover {
-  padding: 0;
-}
-.down .similar .classblock:hover button {
-  padding: 1rem 2rem;
-}
-.down .similar .classblock {
-  margin: 0 1rem 0 0;
-}
-.down .similar .classblock .leicontent {
-  width: 10rem;
-  height: 6rem;
-  white-space: normal;
-  overflow: scroll;
+  font-size: 1rem;
+  font-weight: 100;
   font-family: YouYuan;
-  font-size: 0.8rem;
-  line-height: 1rem;
+  transition: all 200ms ease-in-out;
+}
+.mod el-button:hover {
+  background-color: #0bedae;
+  color: #fff;
+  font-weight: 500;
+}
+
+.contentDeal {
+  flex: 34.5rem;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
 .messageBox {
@@ -723,7 +367,6 @@ export default {
   left: 0;
   top: 0;
   background-color: #0006;
-  color: #5e5498;
   z-index: 2;
   display: flex;
   flex-direction: row;
@@ -743,11 +386,11 @@ export default {
 .messageBox .boardout .board {
   padding: 1rem;
   margin: 0;
-  background: #fff;
-  box-shadow: 0px 71px 134px rgba(94, 84, 152, 0.1),
-    0px 35.9437px 58.4156px rgba(94, 84, 152, 0.0675),
-    0px 14.2px 21.775px rgba(94, 84, 152, 0.05),
-    0px 3.10625px 7.74687px rgba(94, 84, 152, 0.0325);
+  background: linear-gradient(
+    to bottom,
+    rgba(250, 251, 252, 1),
+    rgba(250, 251, 252, 0.8)
+  );
   border-radius: 0.2rem 0.2rem 0 0;
   display: flex;
   flex-direction: column;
@@ -804,20 +447,286 @@ export default {
   padding: 0.5rem 1rem;
   margin: 0;
   width: 21rem;
-  background: #5e5498;
-  box-shadow: 0px 11px 134px rgba(94, 84, 152, 0.5),
-    0px 25.9437px 58.4156px rgba(94, 84, 152, 0.375),
-    0px 4.2px 21.775px rgba(94, 84, 152, 0.2),
-    0px 3.10625px 7.74687px rgba(94, 84, 152, 0.125);
-  border-radius: 0rem 0rem 0.5rem 0rem;
-  color: #f4f2ff;
-  font-family: YaHei;
-  font-size: 1.2rem;
+  background: linear-gradient(
+    to bottom,
+    rgba(250, 251, 252, 1),
+    rgba(250, 251, 252, 1)
+  );
   border-radius: 0 0 0.2rem 0.2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-weight: 900;
+}
+
+.contentDeal1 {
+  flex: 34.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  color: #687684;
+  z-index: 1;
+}
+.dealleft {
+  flex: 15rem;
+  height: 33.5rem;
+  background: linear-gradient(
+    to bottom,
+    rgba(250, 251, 252, 0.3),
+    rgba(250, 251, 252, 0.2)
+  );
+  border-radius: 0.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: scroll;
+}
+.questionleft button {
+  margin-top: 0.5rem;
+  width: 14rem;
+  height: 3rem;
+  color: #fff;
+  border: 0;
+  font-size: 1rem;
+  font-weight: 100;
+  text-align: center;
+  font-family: YouYuan;
+  text-shadow: 0.01rem 0.01rem 1px #fff;
+  background: linear-gradient(
+    to bottom,
+    rgba(250, 251, 252, 0.3),
+    rgba(250, 251, 252, 0.2)
+  );
+  border-radius: 0.2rem;
+  padding: 0.2rem 0.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  transition: all 100ms ease-in-out;
+}
+.questionleft button:focus {
+  height: 3.5rem;
+  background: linear-gradient(
+    to bottom,
+    rgba(250, 251, 252, 1),
+    rgba(250, 251, 252, 0.8)
+  );
+  color: #687684;
+}
+.questionleft .title {
+  width: 5rem;
+  font-size: 1rem;
+  overflow: scroll;
+}
+.questionleft .bar {
+  font-size: 1.5rem;
+}
+.questionleft .words {
+  width: 10rem;
+  height: 2.5rem;
+  font-size: 0.8rem;
+  overflow: scroll;
+  display: flex;
+  flex-direction: row;
+  transition: all 200ms ease-in-out;
+}
+.questionleft:hover .words {
+  height: 3rem;
+}
+.middle {
+  flex: 40rem;
+  height: 33.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.middle .up {
+  height: 8.5rem;
+  width: 36rem;
+  color: #fff;
+  /* text-shadow: 0.01rem 0.01rem 1px #fff; */
+  background: linear-gradient(
+    to bottom,
+    rgba(250, 251, 252, 0.5),
+    rgba(250, 251, 252, 0.4)
+  );
+  border-radius: 0.2rem;
+  padding: 1rem;
+  text-align: left;
+  margin-bottom: 1rem;
+  overflow: scroll;
+  line-height: 1.5rem;
+}
+.middle .down {
+  width: 38rem;
+  height: 22rem;
+  display: flex;
+}
+.middle .down .left {
+  flex: 27rem;
+  height: 22rem;
+  /* width: 29rem; */
+  margin-right: 1rem;
+  background: linear-gradient(
+    to bottom,
+    rgba(250, 251, 252, 0.3),
+    rgba(250, 251, 252, 0.2)
+  );
+  border-radius: 0.2rem;
+  border-radius: 0.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.middle .down .left iframe {
+  width: 26rem;
+  height: 21rem;
+  padding: 0rem;
+  margin: 0rem;
+}
+.middle .down .right {
+  flex: 10rem;
+  height: 22rem;
+  /* width: 8rem; */
+  /* border: 1px solid #000; */
+  background: linear-gradient(
+    to bottom,
+    rgba(250, 251, 252, 0.3),
+    rgba(250, 251, 252, 0.2)
+  );
+  border-radius: 0.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: scroll;
+}
+.middle .down .right button {
+  width: 9rem;
+  height: 3rem;
+  margin-top: 1rem;
+  border: 0;
+  border-radius: 0.2rem;
+  background: linear-gradient(
+    to bottom,
+    rgba(250, 251, 252, 1),
+    rgba(250, 251, 252, 1)
+  );
+  font-size: 1.2rem;
+  font-weight: 100;
+  text-align: center;
+  font-family: YouYuan;
+  color: #687684;
+  text-shadow: 0.01rem 0.01rem 1px #687684;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  transition: all 200ms ease-in-out;
+}
+.middle .down .right button:hover {
+  width: 9.5rem;
+  height: 3.2rem;
+}
+.middle .down .right img {
+  width: 1rem;
+}
+.middle .down .right .title {
+  margin: 1rem;
+  color: #fff;
+  font-size: 1.2rem;
+}
+.middle .down .right .words {
+  margin-bottom: 0.5rem;
+  width: 8rem;
+  height: 3rem;
+  color: #fff;
+  text-shadow: 0.01rem 0.01rem 1px #fff;
+  background: linear-gradient(
+    to bottom,
+    rgba(250, 251, 252, 0.3),
+    rgba(250, 251, 252, 0.2)
+  );
+  border-radius: 0.2rem;
+  padding: 0.2rem 0.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  transition: all 200ms ease-in-out;
+}
+.dealright {
+  flex: 11.5rem;
+  height: 33.5rem;
+  background: linear-gradient(
+    to bottom,
+    rgba(250, 251, 252, 0.3),
+    rgba(250, 251, 252, 0.2)
+  );
+  border-radius: 0.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: scroll;
+}
+.dealright .titleright {
+  margin: 1rem;
+  color: #000;
+}
+.questionright button {
+  margin-bottom: 0.5rem;
+  width: 10.5rem;
+  height: 3rem;
+  color: #fff;
+  border: 0;
+  font-size: 1rem;
+  font-weight: 100;
+  text-align: center;
+  font-family: YouYuan;
+  text-shadow: 0.01rem 0.01rem 1px #fff;
+  background: linear-gradient(
+    to bottom,
+    rgba(250, 251, 252, 0.3),
+    rgba(250, 251, 252, 0.2)
+  );
+  border-radius: 0.2rem;
+  padding: 0.2rem 0.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  transition: all 200ms ease-in-out;
+}
+.questionright button:focus {
+  height: 3.5rem;
+  background: linear-gradient(
+    to bottom,
+    rgba(250, 251, 252, 1),
+    rgba(250, 251, 252, 0.8)
+  );
+  color: #687684;
+  border: 0;
+}
+.questionright .title {
+  width: 4rem;
+  font-size: 1rem;
+  overflow: scroll;
+}
+.questionright .bar {
+  font-size: 1.5rem;
+}
+.questionright .words {
+  width: 11rem;
+  height: 2.5rem;
+  font-size: 0.8rem;
+  overflow: scroll;
+  display: flex;
+  flex-direction: row;
+  transition: all 200ms ease-in-out;
+}
+.questionright:hover .words {
+  height: 3rem;
 }
 </style>
