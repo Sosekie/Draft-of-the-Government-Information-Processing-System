@@ -5,7 +5,10 @@
       <!-- <div class="digtotal">total</div> -->
     </div>
     <div class="themeword">该主题词情感分析</div>
-    <div class="middle">情感分析图</div>
+    <div class="middle">
+      <div class="simititle">情感分析</div>
+      <Emotion></Emotion>
+    </div>
     <div class="down">
       <div class="downleft">
         <Keywords></Keywords>
@@ -37,6 +40,7 @@
 import * as echarts from "echarts";
 import LocationSelect from "./datepicker/LocationSelect.vue";
 import Keywords from "./searchkeywords/keywords.vue";
+import Emotion from "./emotion/emotion.vue";
 
 export default {
   name: "Dig",
@@ -170,6 +174,7 @@ export default {
   components: {
     LocationSelect,
     Keywords,
+    Emotion,
   },
 };
 </script>
@@ -243,10 +248,33 @@ export default {
   width: 66.5rem;
   height: 16rem;
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-end;
+  justify-content: flex-end;
   margin-right: 1rem;
   margin-bottom: 1rem;
+}
+.simititle {
+  position: absolute;
+  width: 10rem;
+  height: 2rem;
+  display: flex;
+  margin: -0.05rem 0 0 -0.05rem;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background: #5e5498;
+  box-shadow: 0px 11px 134px rgba(94, 84, 152, 0.5),
+    0px 25.9437px 58.4156px rgba(94, 84, 152, 0.375),
+    0px 4.2px 21.775px rgba(94, 84, 152, 0.2),
+    0px 3.10625px 7.74687px rgba(94, 84, 152, 0.125);
+  border-radius: 0.5rem 0rem 0rem 0rem;
+  color: #f4f2ff;
+  font-size: 1.2rem;
+  font-weight: 900;
+  font-family: YaHei;
+  transition: all 500ms ease-in-out;
+  opacity: 1;
+  z-index: 1;
 }
 .dig .middle .classblock {
   padding: 1rem 1rem;

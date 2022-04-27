@@ -47,8 +47,8 @@ section {
   top: 80%;
   left: 10%;
   animation: animate 7s linear infinite;
-  color: #55a55e;
-  background: #edffef;
+  color: #edffef;
+  background: #55a55e;
   box-shadow: 0px 71px 134px rgba(85, 165, 94, 0.1),
     0px 35.9437px 58.4156px rgba(85, 165, 94, 0.0675),
     0px 14.2px 21.775px rgba(85, 165, 94, 0.05),
@@ -58,8 +58,8 @@ section {
   top: 80%;
   left: 40%;
   animation: animate 6s linear infinite;
-  color: #3a7f92;
-  background: #ecfbff;
+  color: #ecfbff;
+  background: #3a7f92;
   box-shadow: 0px 71px 134px rgba(58, 127, 146, 0.1),
     0px 35.9437px 58.4156px rgba(58, 127, 146, 0.0675),
     0px 14.2px 21.775px rgba(58, 127, 146, 0.05),
@@ -69,8 +69,8 @@ section {
   top: 90%;
   left: 65%;
   animation: animate 12s linear infinite;
-  color: #5e5498;
-  background: #f4f2ff;
+  color: #f4f2ff;
+  background: #5e5498;
   box-shadow: 0px 71px 134px rgba(94, 84, 152, 0.1),
     0px 35.9437px 58.4156px rgba(94, 84, 152, 0.0675),
     0px 14.2px 21.775px rgba(94, 84, 152, 0.05),
@@ -80,8 +80,8 @@ section {
   top: 60%;
   left: 70%;
   animation: animate 5s linear infinite;
-  color: #9b715d;
-  background: #fff2ec;
+  color: #fff2ec;
+  background: #9b715d;
   box-shadow: 0px 71px 134px rgba(155, 113, 93, 0.1),
     0px 35.9437px 58.4156px rgba(155, 113, 93, 0.0675),
     0px 14.2px 21.775px rgba(155, 113, 93, 0.05),
@@ -91,8 +91,8 @@ section {
   top: 80%;
   left: 50%;
   animation: animate 10s linear infinite;
-  color: #2c5fa6;
-  background: #ecf4ff;
+  color: #ecf4ff;
+  background: #2c5fa6;
   box-shadow: 0px 71px 134px rgba(44, 95, 166, 0.1),
     0px 35.9437px 58.4156px rgba(44, 95, 166, 0.0675),
     0px 14.2px 21.775px rgba(44, 95, 166, 0.05),
@@ -102,8 +102,8 @@ section {
   top: 70%;
   left: 20%;
   animation: animate 7s linear infinite;
-  color: #7d257d;
-  background: #fff7ff;
+  color: #fff7ff;
+  background: #7d257d;
   box-shadow: 0px 71px 134px rgba(125, 37, 125, 0.1),
     0px 35.9437px 58.4156px rgba(125, 37, 125, 0.0675),
     0px 14.2px 21.775px rgba(125, 37, 125, 0.05),

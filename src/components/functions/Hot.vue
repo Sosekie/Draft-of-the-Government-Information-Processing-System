@@ -15,6 +15,7 @@
     <div class="left">
       <div class="up" v-loading="loading">
         <div class="chart1">
+          <div class="simititle">增量式舆情热点</div>
           <iframe
             src="new_hot(2).html"
             name="topFrame"
@@ -24,6 +25,7 @@
           ></iframe>
         </div>
         <div class="chart2">
+          <div class="simititle">舆情热点事件</div>
           <iframe
             src="hot_point(2).html"
             name="topFrame"
@@ -291,6 +293,30 @@ export default {
   display: flex;
   flex-direction: row;
 }
+.left .up .simititle {
+  position: absolute;
+  width: auto;
+  padding: 0 1rem;
+  height: 2rem;
+  display: flex;
+  margin: -0.5rem 0 0 -0.5rem;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background: #5e5498;
+  box-shadow: 0px 11px 134px rgba(94, 84, 152, 0.5),
+    0px 25.9437px 58.4156px rgba(94, 84, 152, 0.375),
+    0px 4.2px 21.775px rgba(94, 84, 152, 0.2),
+    0px 3.10625px 7.74687px rgba(94, 84, 152, 0.125);
+  border-radius: 0rem 0rem 0.5rem 0rem;
+  color: #f4f2ff;
+  font-size: 1.2rem;
+  font-weight: 900;
+  font-family: YaHei;
+  transition: all 500ms ease-in-out;
+  opacity: 1;
+  z-index: 1;
+}
 .left .up .chart1 {
   flex: 25rem;
   margin-right: 1rem;
@@ -301,8 +327,8 @@ export default {
     0px 3.10625px 7.74687px rgba(94, 84, 152, 0.0325);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 .left .up .chart2 {
   flex: 25rem;
@@ -313,8 +339,8 @@ export default {
     0px 3.10625px 7.74687px rgba(155, 113, 93, 0.0325);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 .left .up iframe {
   width: 23.5rem;
