@@ -13,7 +13,7 @@
       </div>
     </div>
     <div class="left">
-      <div class="up">
+      <div class="up" v-loading="loading">
         <div class="chart1">
           <iframe
             src="new_hot(2).html"
@@ -34,6 +34,7 @@
         </div>
       </div>
       <div class="down">
+        <div class="simititle">当前热点</div>
         <div class="words">
           <div class="key">热点词</div>
           <div class="list">
@@ -67,6 +68,7 @@
           direction="up"
           behavior="scroll"
         >
+          <div class="simititle">潜在热点</div>
           <div class="things" v-for="item in items3">
             <div class="time">
               <div class="year">{{ item.year }}</div>
@@ -89,6 +91,7 @@ export default {
   data() {
     return {
       bol: false,
+      loading: false,
       items: [
         {
           title: "海底捞",
@@ -246,6 +249,24 @@ export default {
     close() {
       this.bol = !this.bol;
     },
+    iframeLoad() {
+      this.loading = true;
+      const iframe = this.$refs.Iframe;
+      if (iframe.attachEvent) {
+        // IE
+        iframe.attachEvent("onload", () => {
+          this.loading = false;
+        });
+      } else {
+        // 非IE
+        iframe.onload = () => {
+          this.loading = false;
+        };
+      }
+    },
+    mounted() {
+      this.iframeLoad();
+    },
   },
 };
 </script>
@@ -273,8 +294,8 @@ export default {
 .left .up .chart1 {
   flex: 25rem;
   margin-right: 1rem;
-  background-color: #fff;
-  box-shadow: 0px 71px 134px rgba(94, 84, 152, 0.1),
+  border: 0.2rem solid #f4f2ff;
+  box-shadow: inset 0px 71px 134px rgba(94, 84, 152, 0.1),
     0px 35.9437px 58.4156px rgba(94, 84, 152, 0.0675),
     0px 14.2px 21.775px rgba(94, 84, 152, 0.05),
     0px 3.10625px 7.74687px rgba(94, 84, 152, 0.0325);
@@ -285,11 +306,11 @@ export default {
 }
 .left .up .chart2 {
   flex: 25rem;
-  background-color: #fff;
-  box-shadow: 0px 71px 134px rgba(94, 84, 152, 0.1),
-    0px 35.9437px 58.4156px rgba(94, 84, 152, 0.0675),
-    0px 14.2px 21.775px rgba(94, 84, 152, 0.05),
-    0px 3.10625px 7.74687px rgba(94, 84, 152, 0.0325);
+  border: 0.2rem solid #fff2ec;
+  box-shadow: inset 0px 71px 134px rgba(155, 113, 93, 0.1),
+    0px 35.9437px 58.4156px rgba(155, 113, 93, 0.0675),
+    0px 14.2px 21.775px rgba(155, 113, 93, 0.05),
+    0px 3.10625px 7.74687px rgba(155, 113, 93, 0.0325);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -304,6 +325,7 @@ export default {
 }
 .left .down {
   flex: 18rem;
+  padding: 0 1rem;
   background-color: #fff;
   box-shadow: 0px 71px 134px rgba(94, 84, 152, 0.1),
     0px 35.9437px 58.4156px rgba(94, 84, 152, 0.0675),
@@ -311,9 +333,34 @@ export default {
     0px 3.10625px 7.74687px rgba(94, 84, 152, 0.0325);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
+
+.left .down .simititle {
+  position: absolute;
+  width: 10rem;
+  height: 2rem;
+  display: flex;
+  margin: -0.4rem 0 0 38.7rem;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background: #5e5498;
+  box-shadow: 0px 11px 134px rgba(94, 84, 152, 0.5),
+    0px 25.9437px 58.4156px rgba(94, 84, 152, 0.375),
+    0px 4.2px 21.775px rgba(94, 84, 152, 0.2),
+    0px 3.10625px 7.74687px rgba(94, 84, 152, 0.125);
+  border-radius: 0rem 0rem 0rem 0.5rem;
+  color: #f4f2ff;
+  font-size: 1.2rem;
+  font-weight: 900;
+  font-family: YaHei;
+  transition: all 500ms ease-in-out;
+  opacity: 1;
+  z-index: 5;
+}
+
 .left .down .words {
   flex: 3rem;
   width: 47rem;
@@ -360,12 +407,55 @@ export default {
   margin: 0rem 0.2rem;
   border-radius: 0.2rem;
   white-space: nowrap;
-  background-color: #fff;
-  box-shadow: 0px 17px 30px rgba(94, 84, 152, 0.02),
-    0px 8.9437px 15.4156px rgba(94, 84, 152, 0.01275),
-    0px 3.2px 5.775px rgba(94, 84, 152, 0.02),
-    0px 1.50625px 3.74687px rgba(94, 84, 152, 0.01525);
   font-weight: 900;
+}
+.left .down .words .list .word:nth-child(n) {
+  color: #55a55e;
+  background: #edffef;
+  box-shadow: 0px 71px 134px rgba(85, 165, 94, 0.1),
+    0px 35.9437px 58.4156px rgba(85, 165, 94, 0.0675),
+    0px 14.2px 21.775px rgba(85, 165, 94, 0.05),
+    0px 3.10625px 7.74687px rgba(85, 165, 94, 0.0325);
+}
+.left .down .words .list .word:nth-child(2n) {
+  color: #3a7f92;
+  background: #ecfbff;
+  box-shadow: 0px 71px 134px rgba(58, 127, 146, 0.1),
+    0px 35.9437px 58.4156px rgba(58, 127, 146, 0.0675),
+    0px 14.2px 21.775px rgba(58, 127, 146, 0.05),
+    0px 3.10625px 7.74687px rgba(58, 127, 146, 0.0325);
+}
+.left .down .words .list .word:nth-child(3n) {
+  color: #5e5498;
+  background: #f4f2ff;
+  box-shadow: 0px 71px 134px rgba(94, 84, 152, 0.1),
+    0px 35.9437px 58.4156px rgba(94, 84, 152, 0.0675),
+    0px 14.2px 21.775px rgba(94, 84, 152, 0.05),
+    0px 3.10625px 7.74687px rgba(94, 84, 152, 0.0325);
+}
+.left .down .words .list .word:nth-child(4n) {
+  color: #9b715d;
+  background: #fff2ec;
+  box-shadow: 0px 71px 134px rgba(155, 113, 93, 0.1),
+    0px 35.9437px 58.4156px rgba(155, 113, 93, 0.0675),
+    0px 14.2px 21.775px rgba(155, 113, 93, 0.05),
+    0px 3.10625px 7.74687px rgba(155, 113, 93, 0.0325);
+}
+.left .down .words .list .word:nth-child(5n) {
+  color: #2c5fa6;
+  background: #ecf4ff;
+  box-shadow: 0px 71px 134px rgba(44, 95, 166, 0.1),
+    0px 35.9437px 58.4156px rgba(44, 95, 166, 0.0675),
+    0px 14.2px 21.775px rgba(44, 95, 166, 0.05),
+    0px 3.10625px 7.74687px rgba(44, 95, 166, 0.0325);
+}
+.left .down .words .list .word:nth-child(6n) {
+  color: #7d257d;
+  background: #fff7ff;
+  box-shadow: 0px 71px 134px rgba(125, 37, 125, 0.1),
+    0px 35.9437px 58.4156px rgba(125, 37, 125, 0.0675),
+    0px 14.2px 21.775px rgba(125, 37, 125, 0.05),
+    0px 3.10625px 7.74687px rgba(125, 37, 125, 0.0325);
 }
 .left .down .sentence {
   flex: 10rem;
@@ -414,11 +504,35 @@ export default {
   overflow: scroll;
   height: 29rem;
 }
+
+.righthot .up .simititle {
+  position: absolute;
+  width: 10rem;
+  height: 2rem;
+  display: flex;
+  margin: -0.4rem 0 0 6.7rem;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background: #5e5498;
+  box-shadow: 0px 11px 134px rgba(94, 84, 152, 0.5),
+    0px 25.9437px 58.4156px rgba(94, 84, 152, 0.375),
+    0px 4.2px 21.775px rgba(94, 84, 152, 0.2),
+    0px 3.10625px 7.74687px rgba(94, 84, 152, 0.125);
+  border-radius: 0rem 0rem 0rem 0.5rem;
+  color: #f4f2ff;
+  font-size: 1.2rem;
+  font-weight: 900;
+  font-family: YaHei;
+  transition: all 500ms ease-in-out;
+  opacity: 1;
+  z-index: 5;
+}
+
 .righthot .up .blockhot .things {
   display: flex;
   margin-bottom: 1rem;
   flex-direction: column;
-  background-color: #fff;
   background-color: #fff;
   box-shadow: 0px 7px 10px rgba(94, 84, 152, 0.1),
     0px 3.594px 5.842px rgba(94, 84, 152, 0.0675),
@@ -426,6 +540,54 @@ export default {
     0px 0.311px 0.775px rgba(94, 84, 152, 0.0325);
   align-items: left;
   justify-content: center;
+}
+.righthot .up .blockhot .things:nth-child(n) {
+  color: #55a55e;
+  background: #edffef;
+  box-shadow: 0px 71px 134px rgba(85, 165, 94, 0.1),
+    0px 35.9437px 58.4156px rgba(85, 165, 94, 0.0675),
+    0px 14.2px 21.775px rgba(85, 165, 94, 0.05),
+    0px 3.10625px 7.74687px rgba(85, 165, 94, 0.0325);
+}
+.righthot .up .blockhot .things:nth-child(2n) {
+  color: #3a7f92;
+  background: #ecfbff;
+  box-shadow: 0px 71px 134px rgba(58, 127, 146, 0.1),
+    0px 35.9437px 58.4156px rgba(58, 127, 146, 0.0675),
+    0px 14.2px 21.775px rgba(58, 127, 146, 0.05),
+    0px 3.10625px 7.74687px rgba(58, 127, 146, 0.0325);
+}
+.righthot .up .blockhot .things:nth-child(3n) {
+  color: #5e5498;
+  background: #f4f2ff;
+  box-shadow: 0px 71px 134px rgba(94, 84, 152, 0.1),
+    0px 35.9437px 58.4156px rgba(94, 84, 152, 0.0675),
+    0px 14.2px 21.775px rgba(94, 84, 152, 0.05),
+    0px 3.10625px 7.74687px rgba(94, 84, 152, 0.0325);
+}
+.righthot .up .blockhot .things:nth-child(4n) {
+  color: #9b715d;
+  background: #fff2ec;
+  box-shadow: 0px 71px 134px rgba(155, 113, 93, 0.1),
+    0px 35.9437px 58.4156px rgba(155, 113, 93, 0.0675),
+    0px 14.2px 21.775px rgba(155, 113, 93, 0.05),
+    0px 3.10625px 7.74687px rgba(155, 113, 93, 0.0325);
+}
+.righthot .up .blockhot .things:nth-child(5n) {
+  color: #2c5fa6;
+  background: #ecf4ff;
+  box-shadow: 0px 71px 134px rgba(44, 95, 166, 0.1),
+    0px 35.9437px 58.4156px rgba(44, 95, 166, 0.0675),
+    0px 14.2px 21.775px rgba(44, 95, 166, 0.05),
+    0px 3.10625px 7.74687px rgba(44, 95, 166, 0.0325);
+}
+.righthot .up .blockhot .things:nth-child(6n) {
+  color: #7d257d;
+  background: #fff7ff;
+  box-shadow: 0px 71px 134px rgba(125, 37, 125, 0.1),
+    0px 35.9437px 58.4156px rgba(125, 37, 125, 0.0675),
+    0px 14.2px 21.775px rgba(125, 37, 125, 0.05),
+    0px 3.10625px 7.74687px rgba(125, 37, 125, 0.0325);
 }
 .righthot .up .blockhot .things .time {
   padding: 0.1rem 0.4rem 0rem 0.4rem;

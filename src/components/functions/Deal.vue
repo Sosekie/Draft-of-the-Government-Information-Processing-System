@@ -8,11 +8,19 @@
           <img src="../../assets/linehori.png" alt="" />
           <div class="word">批量查询</div>
           <div class="func">
-            <button>诉求导入</button>
+            <input
+              v-show="false"
+              ref="fileRef"
+              type="file"
+              @change="fileChange"
+            />
+            <button @click="uploadFile">诉求导入</button>
             <div class="discrip">?导入格式说明</div>
           </div>
         </div>
-        <div class="chaxun">查询</div>
+        <div class="chaxun">
+          <button @click="close">查询</button>
+        </div>
       </div>
     </div>
     <div class="up">
@@ -55,7 +63,7 @@
       </div>
       <div class="downdown" v-if="play">
         <div class="dealsuggestion">
-          <div class="titlewords">处理意见</div>
+          <div class="titlewords">推荐处理部门</div>
           <div class="n3">市人民政府办公厅</div>
           <div class="n2">市社会保障局</div>
           <div class="n1">市文化和旅游局</div>
@@ -63,7 +71,7 @@
         <div class="similar">
           <div class="simititle">相似工单</div>
           <div class="classblock" v-for="(item, index) in items">
-            <button onclick="clickTab(this)" @click="getIndex(index)">
+            <button onclick="clickTab(this)">
               <div class="lei">{{ item.title }}</div>
               <div class="leinum">{{ item.text }}</div>
               <div class="leicontent">{{ item.content }}</div>
@@ -279,6 +287,10 @@ export default {
       console.log(this.key);
       this.show = 1;
     },
+    // 按钮事件  触发input输入框
+    uploadFile() {
+      this.$refs.fileRef.dispatchEvent(new MouseEvent("click")); //弹出选择本地文件
+    },
   },
   components: {
     LocationSelect,
@@ -300,7 +312,7 @@ export default {
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
-  width: 66.5rem;
+  width: 67.5rem;
 }
 .dig .up .titlewords {
   height: 2.5rem;
@@ -491,7 +503,8 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 66.5rem;
+  width: 67.5rem;
+  /* padding: 0 1rem 0 0; */
   height: 26rem;
 }
 .dig .down .downup {
@@ -563,10 +576,10 @@ export default {
 
 .down .dealgraph {
   position: related;
-  width: 28.6rem;
+  width: 29.6rem;
   height: 14.6rem;
   margin-left: 1rem;
-  border: 0.2rem solid #fff;
+  border: 0.2rem solid #f4f2ff;
   box-shadow: inset 0px 71px 134px rgba(94, 84, 152, 0.1),
     0px 35.9437px 58.4156px rgba(94, 84, 152, 0.0675),
     0px 14.2px 21.775px rgba(94, 84, 152, 0.05),
@@ -654,7 +667,7 @@ export default {
 
 .down .similar {
   position: related;
-  width: 44rem;
+  width: 45rem;
   height: 10rem;
   margin-left: 1rem;
   display: flex;
@@ -663,6 +676,10 @@ export default {
   align-items: flex-start;
   justify-content: flex-start;
   overflow: scroll;
+  box-shadow: 0px 71px 134px rgba(94, 84, 152, 0.1),
+    0px 35.9437px 58.4156px rgba(94, 84, 152, 0.0675),
+    0px 14.2px 21.775px rgba(94, 84, 152, 0.05),
+    0px 3.10625px 7.74687px rgba(94, 84, 152, 0.0325);
 }
 .down .similar .simititle {
   position: absolute;
@@ -784,15 +801,31 @@ export default {
   display: flex;
   flex-direction: row;
   align-items: baseline;
-  justify-content: left;
+  justify-content: center;
 }
 .messageBox .func button {
   width: 5rem;
   height: 2rem;
   border: 0;
   border-radius: 0.2rem;
-  background-color: #fff;
-  filter: drop-shadow(1 1 0.01rem #000);
+  background: #5e5498;
+  box-shadow: 0px 11px 134px rgba(94, 84, 152, 0.5),
+    0px 25.9437px 58.4156px rgba(94, 84, 152, 0.375),
+    0px 4.2px 21.775px rgba(94, 84, 152, 0.2),
+    0px 3.10625px 7.74687px rgba(94, 84, 152, 0.125);
+  border-radius: 0.5rem;
+  color: #f4f2ff;
+  font-family: YaHei;
+  font-size: 1rem;
+  margin-right: 1rem;
+}
+.messageBox .func button:active {
+  background: #f4f2ff;
+  box-shadow: 0px 11px 134px rgba(94, 84, 152, 0.5),
+    0px 25.9437px 58.4156px rgba(94, 84, 152, 0.375),
+    0px 4.2px 21.775px rgba(94, 84, 152, 0.2),
+    0px 3.10625px 7.74687px rgba(94, 84, 152, 0.125);
+  color: #5e5498;
 }
 .messageBox .func .discrip {
   font-size: 0.6rem;
@@ -804,6 +837,7 @@ export default {
   padding: 0.5rem 1rem;
   margin: 0;
   width: 21rem;
+  border: 0;
   background: #5e5498;
   box-shadow: 0px 11px 134px rgba(94, 84, 152, 0.5),
     0px 25.9437px 58.4156px rgba(94, 84, 152, 0.375),
@@ -818,6 +852,16 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  font-weight: 900;
+}
+.messageBox .chaxun button {
+  width: 21rem;
+  height: 100%;
+  border: 0;
+  background: #5e5498;
+  color: #f4f2ff;
+  font-family: YaHei;
+  font-size: 1.2rem;
   font-weight: 900;
 }
 </style>

@@ -1,5 +1,8 @@
 <template>
   <div class="dig">
+    <div class="messageBox" v-if="show" @click="close">
+      <div class="notice">成功添加至处理列表!</div>
+    </div>
     <div class="up">
       <div class="titlewords">今日各类舆情情况</div>
       <!-- <div class="digtotal">total</div> -->
@@ -51,7 +54,7 @@
             <div class="type">{{ item.type }}</div>
             <div class="date">{{ item.date }}</div>
             <div class="point">热度：{{ item.point }}</div>
-            <button>+</button>
+            <button @click="toggle">+</button>
             <div class="blank"></div>
           </div>
           <div class="open">
@@ -73,6 +76,7 @@ export default {
   name: "Dig",
   data() {
     return {
+      show: false,
       items: [
         {
           content:
@@ -187,6 +191,16 @@ export default {
       ],
     };
   },
+  methods: {
+    toggle() {
+      this.show = true;
+      console.log(this.show);
+    },
+    close() {
+      this.show = false;
+      console.log(this.show);
+    },
+  },
   components: {
     LocationSelect,
     Bar4dig,
@@ -201,6 +215,42 @@ export default {
   /* border: 1px solid; */
   display: flex;
   flex-direction: column;
+}
+.messageBox {
+  width: 80%;
+  height: 100%;
+  margin: 2.5rem 0rem 0rem 3.5rem;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: #0000;
+  color: #5e5498;
+  z-index: 2;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  /* transition: all 200ms ease-in-out; */
+}
+.notice {
+  position: absolute;
+  width: 16.5rem;
+  height: 3rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background: #5e5498;
+  box-shadow: 0px 11px 134px rgba(94, 84, 152, 0.5),
+    0px 25.9437px 58.4156px rgba(94, 84, 152, 0.375),
+    0px 4.2px 21.775px rgba(94, 84, 152, 0.2),
+    0px 3.10625px 7.74687px rgba(94, 84, 152, 0.125);
+  color: #f4f2ff;
+  font-size: 1.2rem;
+  font-weight: 900;
+  font-family: YaHei;
+  margin: 2rem 25rem 0 25rem;
+  border-radius: 5rem;
 }
 .dig .up {
   display: flex;
@@ -494,9 +544,6 @@ export default {
   font-weight: 500;
   font-family: YaHei;
 }
-.dig .down .downleft .func .funcright .down LocationSelect {
-  margin-top: 0.5rem;
-}
 
 .dig .down .downleft .graph {
   display: flex;
@@ -575,7 +622,7 @@ export default {
     0px 3.10625px 7.74687px rgba(85, 165, 94, 0.0325);
   border-radius: 0.4rem;
 }
-.dig .down .message .blank{
+.dig .down .message .blank {
   width: 2rem;
 }
 .dig .down .message img {
