@@ -52,6 +52,7 @@
           </div>
         </div>
         <div class="dealgraph" v-if="play">
+          <div class="simititle">推荐部门节点关系图</div>
           <iframe
             src="chartdeal.html"
             name="topFrame"
@@ -579,11 +580,41 @@ export default {
   width: 29.6rem;
   height: 14.6rem;
   margin-left: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-end;
   border: 0.2rem solid #f4f2ff;
   box-shadow: inset 0px 71px 134px rgba(94, 84, 152, 0.1),
     0px 35.9437px 58.4156px rgba(94, 84, 152, 0.0675),
     0px 14.2px 21.775px rgba(94, 84, 152, 0.05),
     0px 3.10625px 7.74687px rgba(94, 84, 152, 0.0325);
+}
+.down .dealgraph .simititle {
+  position: absolute;
+  width: auto;
+  padding: 0 1rem;
+  height: 2rem;
+  display: flex;
+  margin:0 -0.4rem -0.4rem 0;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background: #5e5498;
+  box-shadow: 0px 11px 134px rgba(94, 84, 152, 0.5),
+    0px 25.9437px 58.4156px rgba(94, 84, 152, 0.375),
+    0px 4.2px 21.775px rgba(94, 84, 152, 0.2),
+    0px 3.10625px 7.74687px rgba(94, 84, 152, 0.125);
+  border-radius: 0.5rem 0rem 0rem 0rem;
+  color: #f4f2ff;
+  font-size: 1.2rem;
+  font-weight: 900;
+  font-family: YaHei;
+  transition: all 500ms ease-in-out;
+  opacity: 1;
+}
+.down .dealgraph:hover .simititle {
+  opacity: 0;
 }
 .down .dealgraph iframe {
   width: 28.6rem;
